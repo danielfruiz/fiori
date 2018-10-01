@@ -1,0 +1,80 @@
+<mvc:View controllerName="enap.f2.ZHR_SOL_VAC.controller.Detail" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic"
+	xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table">
+	<semantic:DetailPage id="page" navButtonPress="onNavBack" showNavButton="{device>/system/phone}" title="{i18n>detailTitle}"
+		busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">
+		<semantic:content>
+			<!--<ObjectHeader id="objectHeader" title="{Begda}" number="{ path: 'FleCo', formatter: '.formatter.currencyValue' }"></ObjectHeader>-->
+			<f:SimpleForm id="SimpleFormDisplay354" minWidth="1024" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout" title="{i18n>empleadoTitulo}"
+				labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="1">
+				<f:content>
+					<Label text="{i18n>empleadoNombre}"/>
+					<Text text="{toEmpleado/Name}"/>
+					<Label text="{i18n>empleadoSociedad}"/>
+					<Text text="{toEmpleado/Bukrs} - {toEmpleado/Bukrsd}"/>
+					<Label text="{i18n>empleadoDivision}"/>
+					<Text text="{toEmpleado/Werks} - {toEmpleado/Werksd}"/>
+					<Label text="{i18n>empleadoConvenio}"/>
+					<Text text="{toEmpleado/Trfgb} - {toEmpleado/Trfgbd}"/>
+				</f:content>
+			</f:SimpleForm>
+		<!--	<Table id="lineItemsList" width="auto" items="{toEmpleado/toDiasLegales}" updateFinished="onListUpdateFinished"
+				noDataText="{i18n>detailLineItemTableNoDataText}" busyIndicatorDelay="{detailView>/lineItemTableDelay}" class="sapUiResponsiveMargin">
+				<headerToolbar>
+					<Toolbar id="lineItemsToolbar">
+						<Title id="lineItemsHeader" text="{detailView>/lineItemListTitle}"/>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column>
+						<Text text="{i18n>begda}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>endda}"/>
+					</Column>
+					<Column minScreenWidth="Tablet" demandPopin="true">
+						<Text text="{i18n>dispo}"/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem>
+						<cells>
+							<ObjectIdentifier text="{ path: 'Begda', formatter: '.formatter.fecha' }"/>
+							<ObjectIdentifier text="{ path: 'Endda', formatter: '.formatter.fecha' }"/>
+							<ObjectIdentifier title="{}" text="{Dispo}"/>
+							<ObjectNumber number="{Dispo}" unit="Días"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>-->
+			<t:Table
+				id="lineItemsList12"
+				rows="{path: 'toEmpleado/toDiasLegales'}"
+				title="Products"
+				busyIndicatorDelay="{detailView>/lineItemTableDelay}"
+				selectionMode="None">
+				<t:columns>
+					<t:Column>
+						<Label text="{i18n>begda}" />
+						<t:template>
+							<Text text="{path: 'Begda', type: 'sap.ui.model.type.DateTime', formatOptions: {pattern: 'dd/MM/yyyy'}}"/>
+							<!--<Text text="{path: 'Begda', formatter: '.formatter.fecha'}"/>-->
+							<!--<Text text="{path: 'Begda'}"/>-->
+						</t:template>
+					</t:Column>
+					<t:Column>
+						<Label text="{i18n>endda}" />
+						<t:template>
+							<Text text="{path: 'Endda', type: 'sap.ui.model.type.DateTime', formatOptions: {pattern: 'dd/MM/yyyy'}}"/>
+						</t:template>
+					</t:Column>
+				</t:columns>
+			</t:Table>
+		</semantic:content>
+		<semantic:editAction>
+			<semantic:EditAction id="edit" press="onEdit"/>
+		</semantic:editAction>
+		<semantic:customFooterContent>
+			<Button enabled="true" id="deleteButton" press="onDelete" text="Delete"/>
+		</semantic:customFooterContent>
+	</semantic:DetailPage>
+</mvc:View>

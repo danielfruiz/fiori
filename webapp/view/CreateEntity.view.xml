@@ -1,0 +1,198 @@
+<mvc:View controllerName="enap.f2.ZHR_SOL_VAC.controller.CreateEntity" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
+	xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic"
+	xmlns:smart="sap.ui.comp.smartfield" xmlns="sap.m">
+	<semantic:DetailPage id="page" navButtonPress="onNavBack" title="{viewModel>/viewTitle}" busy="{viewModel>/busy}">
+		<semantic:content>
+			<f:SimpleForm class="editableForm" columnsL="1" columnsM="1" editable="true" emptySpanL="4" emptySpanM="4" id="newEntitySimpleForm"
+				labelSpanL="3" labelSpanM="3" layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024"
+				title="{= ${viewModel>/mode} === 'edit'? 'Edit ZHR_SOL_VAC_SRV.solicitudVacaciones': 'New ZHR_SOL_VAC_SRV.solicitudVacaciones'}">
+				<f:content>
+					<Label text="Time" required="true"/>
+					<Input name="Uzeit" id="Uzeit_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'Uzeit', type: 'sap.ui.model.odata.type.Time' , constraints:{ nullable:false } }"/>
+					<Label text="Idnum" required="true"/>
+					<Input name="Idnum" id="Idnum_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement"
+						enabled="{= ${viewModel>/mode} === 'edit'? false: true}" visible="true"
+						value="{ path: 'Idnum', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:16, nullable:false } }"/>
+					<Label text="Personnel no." required="true"/>
+					<Input name="Pernr" id="Pernr_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'Pernr', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:8, nullable:false } }"/>
+					<Label text="FleEa" required="true"/>
+					<Input name="FleEa" id="FleEa_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'FleEa', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:1, nullable:false } }"/>
+					<Label text="FprEa" required="true"/>
+					<Input name="FprEa" id="FprEa_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'FprEa', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:1, nullable:false } }"/>
+					<Label text="FadEa" required="true"/>
+					<Input name="FadEa" id="FadEa_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'FadEa', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:1, nullable:false } }"/>
+					<Label text="DesEa" required="true"/>
+					<Input name="DesEa" id="DesEa_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'DesEa', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:1, nullable:false } }"/>
+					<Label text="DeeEa" required="true"/>
+					<Input name="DeeEa" id="DeeEa_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'DeeEa', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:1, nullable:false } }"/>
+					<Label text="Anticp" required="true"/>
+					<Input name="Anticp" id="Anticp_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'Anticp', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:1, nullable:false } }"/>
+					<Label text="Currency" required="true"/>
+					<Input name="AntMo" id="AntMo_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'AntMo', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:5, nullable:false } }"/>
+					<Label text="AntEa" required="true"/>
+					<Input name="AntEa" id="AntEa_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'AntEa', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:1, nullable:false } }"/>
+					<Label text="Presta" required="true"/>
+					<Input name="Presta" id="Presta_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'Presta', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:1, nullable:false } }"/>
+					<Label text="Subtype" required="true"/>
+					<Input name="PreSubty" id="PreSubty_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'PreSubty', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:4, nullable:false } }"/>
+					<Label text="Currency" required="true"/>
+					<Input name="PreWaers" id="PreWaers_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'PreWaers', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:5, nullable:false } }"/>
+					<Label text="Loan conditions" required="true"/>
+					<Input name="PreCondi" id="PreCondi_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'PreCondi', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:2, nullable:false } }"/>
+					<Label text="PreEa" required="true"/>
+					<Input name="PreEa" id="PreEa_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'PreEa', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:1, nullable:false } }"/>
+					<Label text="SolEs" required="true"/>
+					<Input name="SolEs" id="SolEs_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'SolEs', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:1, nullable:false } }"/>
+					<Label text="Changed by" required="true"/>
+					<Input name="Uname" id="Uname_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'Uname', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:12, nullable:false } }"/>
+					<Label text="Amount" required="true"/>
+					<Input name="AntVa" id="AntVa_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'AntVa', type: 'sap.ui.model.odata.type.Decimal' , constraints:{ precision:10, scale:3, nullable:false } }"/>
+					<Label text="Amount" required="true"/>
+					<Input name="PreImpor" id="PreImpor_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'PreImpor', type: 'sap.ui.model.odata.type.Decimal' , constraints:{ precision:10, scale:3, nullable:false } }"/>
+					<Label text="Rpymnt instl." required="true"/>
+					<Input name="PreCuamo" id="PreCuamo_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'PreCuamo', type: 'sap.ui.model.odata.type.Decimal' , constraints:{ precision:14, scale:3, nullable:false } }"/>
+					<Label text="Amount" required="true"/>
+					<Input name="PreSante" id="PreSante_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'PreSante', type: 'sap.ui.model.odata.type.Decimal' , constraints:{ precision:10, scale:3, nullable:false } }"/>
+					<Label text="Start Date" required="false"/>
+					<DatePicker name="Begda" value="{ path: 'Begda', type: 'sap.ui.model.type.DateTime'}" id="Begda_id" type="DateTime" enabled="true"
+						visible="true"/>
+					<Label text="End Date" required="false"/>
+					<DatePicker name="Endda" value="{ path: 'Endda', type: 'sap.ui.model.type.DateTime'}" id="Endda_id" type="DateTime" enabled="true"
+						visible="true"/>
+					<Label text="Start Date" required="false"/>
+					<DatePicker name="AntBeg0267" value="{ path: 'AntBeg0267', type: 'sap.ui.model.type.DateTime'}" id="AntBeg0267_id" type="DateTime"
+						enabled="true" visible="true"/>
+					<Label text="End Date" required="false"/>
+					<DatePicker name="AntEnd0267" value="{ path: 'AntEnd0267', type: 'sap.ui.model.type.DateTime'}" id="AntEnd0267_id" type="DateTime"
+						enabled="true" visible="true"/>
+					<Label text="Start Date" required="false"/>
+					<DatePicker name="AntBeg0015" value="{ path: 'AntBeg0015', type: 'sap.ui.model.type.DateTime'}" id="AntBeg0015_id" type="DateTime"
+						enabled="true" visible="true"/>
+					<Label text="End Date" required="false"/>
+					<DatePicker name="AntEnd0015" value="{ path: 'AntEnd0015', type: 'sap.ui.model.type.DateTime'}" id="AntEnd0015_id" type="DateTime"
+						enabled="true" visible="true"/>
+					<Label text="Approval date" required="false"/>
+					<DatePicker name="PreFpago" value="{ path: 'PreFpago', type: 'sap.ui.model.type.DateTime'}" id="PreFpago_id" type="DateTime" enabled="true"
+						visible="true"/>
+					<Label text="Repayment start" required="false"/>
+					<DatePicker name="PreFamor" value="{ path: 'PreFamor', type: 'sap.ui.model.type.DateTime'}" id="PreFamor_id" type="DateTime" enabled="true"
+						visible="true"/>
+					<Label text="Changed on" required="false"/>
+					<DatePicker name="Aedtm" value="{ path: 'Aedtm', type: 'sap.ui.model.type.DateTime'}" id="Aedtm_id" type="DateTime" enabled="true"
+						visible="true"/>
+					<Label text="Date" required="false"/>
+					<DatePicker name="Fgens" value="{ path: 'Fgens', type: 'sap.ui.model.type.DateTime'}" id="Fgens_id" type="DateTime" enabled="true"
+						visible="true"/>
+					<Label text="Start Date" required="false"/>
+					<DatePicker name="Flbeg" value="{ path: 'Flbeg', type: 'sap.ui.model.type.DateTime'}" id="Flbeg_id" type="DateTime" enabled="true"
+						visible="true"/>
+					<Label text="End Date" required="false"/>
+					<DatePicker name="Flend" value="{ path: 'Flend', type: 'sap.ui.model.type.DateTime'}" id="Flend_id" type="DateTime" enabled="true"
+						visible="true"/>
+					<Label text="Start Date" required="false"/>
+					<DatePicker name="Fpbeg" value="{ path: 'Fpbeg', type: 'sap.ui.model.type.DateTime'}" id="Fpbeg_id" type="DateTime" enabled="true"
+						visible="true"/>
+					<Label text="End Date" required="false"/>
+					<DatePicker name="Fpend" value="{ path: 'Fpend', type: 'sap.ui.model.type.DateTime'}" id="Fpend_id" type="DateTime" enabled="true"
+						visible="true"/>
+					<Label text="Start Date" required="false"/>
+					<DatePicker name="Fabeg" value="{ path: 'Fabeg', type: 'sap.ui.model.type.DateTime'}" id="Fabeg_id" type="DateTime" enabled="true"
+						visible="true"/>
+					<Label text="End Date" required="false"/>
+					<DatePicker name="Faend" value="{ path: 'Faend', type: 'sap.ui.model.type.DateTime'}" id="Faend_id" type="DateTime" enabled="true"
+						visible="true"/>
+					<Label text="Start Date" required="false"/>
+					<DatePicker name="Dibeg" value="{ path: 'Dibeg', type: 'sap.ui.model.type.DateTime'}" id="Dibeg_id" type="DateTime" enabled="true"
+						visible="true"/>
+					<Label text="End Date" required="false"/>
+					<DatePicker name="Diend" value="{ path: 'Diend', type: 'sap.ui.model.type.DateTime'}" id="Diend_id" type="DateTime" enabled="true"
+						visible="true"/>
+					<Label text="Start Date" required="false"/>
+					<DatePicker name="Debeg" value="{ path: 'Debeg', type: 'sap.ui.model.type.DateTime'}" id="Debeg_id" type="DateTime" enabled="true"
+						visible="true"/>
+					<Label text="End Date" required="false"/>
+					<DatePicker name="Deend" value="{ path: 'Deend', type: 'sap.ui.model.type.DateTime'}" id="Deend_id" type="DateTime" enabled="true"
+						visible="true"/>
+					<Label text="Start Date" required="false"/>
+					<DatePicker name="Dsbeg" value="{ path: 'Dsbeg', type: 'sap.ui.model.type.DateTime'}" id="Dsbeg_id" type="DateTime" enabled="true"
+						visible="true"/>
+					<Label text="End Date" required="false"/>
+					<DatePicker name="Dsend" value="{ path: 'Dsend', type: 'sap.ui.model.type.DateTime'}" id="Dsend_id" type="DateTime" enabled="true"
+						visible="true"/>
+					<Label text="FleCo" required="true"/>
+					<Input name="FleCo" id="FleCo_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'FleCo', type: 'sap.ui.model.odata.type.Byte' , constraints:{ nullable:false } }"/>
+					<Label text="FleVe" required="true"/>
+					<Input name="FleVe" id="FleVe_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'FleVe', type: 'sap.ui.model.odata.type.Byte' , constraints:{ nullable:false } }"/>
+					<Label text="FprCo" required="true"/>
+					<Input name="FprCo" id="FprCo_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'FprCo', type: 'sap.ui.model.odata.type.Byte' , constraints:{ nullable:false } }"/>
+					<Label text="FprVe" required="true"/>
+					<Input name="FprVe" id="FprVe_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'FprVe', type: 'sap.ui.model.odata.type.Byte' , constraints:{ nullable:false } }"/>
+					<Label text="FadCo" required="true"/>
+					<Input name="FadCo" id="FadCo_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'FadCo', type: 'sap.ui.model.odata.type.Byte' , constraints:{ nullable:false } }"/>
+					<Label text="FadVe" required="true"/>
+					<Input name="FadVe" id="FadVe_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'FadVe', type: 'sap.ui.model.odata.type.Byte' , constraints:{ nullable:false } }"/>
+					<Label text="DesCo" required="true"/>
+					<Input name="DesCo" id="DesCo_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'DesCo', type: 'sap.ui.model.odata.type.Byte' , constraints:{ nullable:false } }"/>
+					<Label text="DesVe" required="true"/>
+					<Input name="DesVe" id="DesVe_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'DesVe', type: 'sap.ui.model.odata.type.Byte' , constraints:{ nullable:false } }"/>
+					<Label text="DeeCo" required="true"/>
+					<Input name="DeeCo" id="DeeCo_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'DeeCo', type: 'sap.ui.model.odata.type.Byte' , constraints:{ nullable:false } }"/>
+					<Label text="DeeVe" required="true"/>
+					<Input name="DeeVe" id="DeeVe_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'DeeVe', type: 'sap.ui.model.odata.type.Byte' , constraints:{ nullable:false } }"/>
+					<Label text="DiaSa" required="true"/>
+					<Input name="DiaSa" id="DiaSa_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'DiaSa', type: 'sap.ui.model.odata.type.Byte' , constraints:{ nullable:false } }"/>
+					<Label text="PreNcuot" required="true"/>
+					<Input name="PreNcuot" id="PreNcuot_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'PreNcuot', type: 'sap.ui.model.odata.type.Byte' , constraints:{ nullable:false } }"/>
+					<Label text="Disle" required="true"/>
+					<Input name="Disle" id="Disle_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'Disle', type: 'sap.ui.model.odata.type.Byte' , constraints:{ nullable:false } }"/>
+					<Label text="Dispr" required="true"/>
+					<Input name="Dispr" id="Dispr_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'Dispr', type: 'sap.ui.model.odata.type.Byte' , constraints:{ nullable:false } }"/>
+					<Label text="Disve" required="true"/>
+					<Input name="Disve" id="Disve_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'Disve', type: 'sap.ui.model.odata.type.Byte' , constraints:{ nullable:false } }"/>
+				</f:content>
+			</f:SimpleForm>
+		</semantic:content>
+		<semantic:saveAction>
+			<semantic:SaveAction id="save" enabled="{viewModel>/enableCreate}" press="onSave"/>
+		</semantic:saveAction>
+		<semantic:cancelAction>
+			<semantic:CancelAction id="cancel" press="onCancel"></semantic:CancelAction>
+		</semantic:cancelAction>
+	</semantic:DetailPage>
+</mvc:View>
