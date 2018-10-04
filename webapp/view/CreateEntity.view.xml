@@ -3,17 +3,59 @@
 	xmlns:smart="sap.ui.comp.smartfield" xmlns="sap.m">
 	<semantic:DetailPage id="page" navButtonPress="onNavBack" title="{viewModel>/viewTitle}" busy="{viewModel>/busy}">
 		<semantic:content>
-			<f:SimpleForm class="editableForm" columnsL="1" columnsM="1" editable="true" emptySpanL="4" emptySpanM="4" id="newEntitySimpleForm"
-				labelSpanL="3" labelSpanM="3" layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024"
-				title="{= ${viewModel>/mode} === 'edit'? 'Edit ZHR_SOL_VAC_SRV.solicitudVacaciones': 'New ZHR_SOL_VAC_SRV.solicitudVacaciones'}">
+			<!--EMPLEADO-->
+			<!--<f:SimpleForm id="sfEmpleado" editable="false" layout="ResponsiveGridLayout" title="{i18n>empleadoTitulo}" maxContainerCols="2"
+				labelSpanL="6" labelSpanM="6" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
 				<f:content>
-					<Label text="Time" required="true"/>
-					<Input name="Uzeit" id="Uzeit_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
-						value="{ path: 'Uzeit', type: 'sap.ui.model.odata.type.Time' , constraints:{ nullable:false } }"/>
-					<Label text="Idnum" required="true"/>
-					<Input name="Idnum" id="Idnum_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement"
-						enabled="{= ${viewModel>/mode} === 'edit'? false: true}" visible="true"
+					<core:Title text="Datos Personales"/>
+					<Label text="{i18n>empleadoNombre}"/>
+					<Text text="{toEmpleado/Name}"/>
+					<Label text="{i18n>empleadoFIngreso}"/>
+					<Text text="{parts: ['toEmpleado/Fingr'], formatter: '.formatter.fecha'}"/>
+					<Label text="{i18n>empleadoConvenio}"/>
+					<Text text="{toEmpleado/Trfgb} - {toEmpleado/Trfgbd}"/>
+					<Label text="{i18n>empleadoRegimen}"/>
+					<Text text="{toEmpleado/Schkz} - {toEmpleado/Schkzd}"/>
+					<core:Title text="Asignación Organizativa"/>
+					<Label text="{i18n>empleadoSociedad}"/>
+					<Text text="{toEmpleado/Bukrs} - {toEmpleado/Bukrsd}"/>
+					<Label text="{i18n>empleadoDivision}"/>
+					<Text text="{toEmpleado/Werks} - {toEmpleado/Werksd}"/>
+				</f:content>
+			</f:SimpleForm>-->
+			<!--CABECERA SOLICITUD-->
+			<f:SimpleForm class="editableForm" columnsL="1" columnsM="1" editable="true" emptySpanL="4" emptySpanM="4" id="newEntitySimpleForm"
+				labelSpanL="3" labelSpanM="3" layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024" title="{viewModel>/viewTitle}">
+				<!--title="{= ${viewModel>/mode} === 'edit'? 'Edit ZHR_SOL_VAC_SRV.solicitudVacaciones': 'New ZHR_SOL_VAC_SRV.solicitudVacaciones'}">-->
+				<f:content>
+					<Label text="{i18n>Idnum}" required="false"/>
+					<Input name="Idnum" id="Idnum_id" valueLiveUpdate="false" liveChange="_validateSaveEnablement" enabled="false" visible="true"
 						value="{ path: 'Idnum', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:16, nullable:false } }"/>
+					<Label text="{i18n>FleCo}" required="true"/>
+					<Input name="FleCo" id="FleCo_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
+						value="{ path: 'FleCo', type: 'sap.ui.model.odata.type.Byte' , constraints:{ nullable:false } }"/>
+					<Label text="{i18n>Begda}" required="true"/>
+					<DatePicker name="Begda" value="{ path: 'Begda', type: 'sap.ui.model.type.Date', formatOptions:{UTC: 'true', pattern:'dd/MMM/yyyy'}}"
+						id="Begda_id" change="_validateSaveEnablement"/>
+					<Label text="{i18n>Endda}" required="false"/>
+					<DatePicker name="Endda" value="{ path: 'Endda', type: 'sap.ui.model.type.Date', formatOptions:{UTC: 'true', pattern:'dd/MMM/yyyy'}}"
+						id="Endda_id" change="_validateSaveEnablement" enabled="false"/>
+				</f:content>
+			</f:SimpleForm>
+			<IconTabBar id="itbSolicitud" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter text="Detalle Dias Legales">
+						<Text text="Info content goes here ..."/>
+					</IconTabFilter>
+					<IconTabFilter text="Detalle Dias Progresivos">
+						<Text text="Attachments go here ..."/>
+					</IconTabFilter>
+					<IconTabFilter text="Detalle Dias Ejecutivos">
+						<Text text="Notes go here ..."/>
+					</IconTabFilter>
+				</items>
+			</IconTabBar>
+			<!--
 					<Label text="Personnel no." required="true"/>
 					<Input name="Pernr" id="Pernr_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
 						value="{ path: 'Pernr', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:8, nullable:false } }"/>
@@ -74,12 +116,7 @@
 					<Label text="Amount" required="true"/>
 					<Input name="PreSante" id="PreSante_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
 						value="{ path: 'PreSante', type: 'sap.ui.model.odata.type.Decimal' , constraints:{ precision:10, scale:3, nullable:false } }"/>
-					<Label text="Start Date" required="false"/>
-					<DatePicker name="Begda" value="{ path: 'Begda', type: 'sap.ui.model.type.DateTime'}" id="Begda_id" type="DateTime" enabled="true"
-						visible="true"/>
-					<Label text="End Date" required="false"/>
-					<DatePicker name="Endda" value="{ path: 'Endda', type: 'sap.ui.model.type.DateTime'}" id="Endda_id" type="DateTime" enabled="true"
-						visible="true"/>
+					
 					<Label text="Start Date" required="false"/>
 					<DatePicker name="AntBeg0267" value="{ path: 'AntBeg0267', type: 'sap.ui.model.type.DateTime'}" id="AntBeg0267_id" type="DateTime"
 						enabled="true" visible="true"/>
@@ -140,9 +177,6 @@
 					<Label text="End Date" required="false"/>
 					<DatePicker name="Dsend" value="{ path: 'Dsend', type: 'sap.ui.model.type.DateTime'}" id="Dsend_id" type="DateTime" enabled="true"
 						visible="true"/>
-					<Label text="FleCo" required="true"/>
-					<Input name="FleCo" id="FleCo_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
-						value="{ path: 'FleCo', type: 'sap.ui.model.odata.type.Byte' , constraints:{ nullable:false } }"/>
 					<Label text="FleVe" required="true"/>
 					<Input name="FleVe" id="FleVe_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
 						value="{ path: 'FleVe', type: 'sap.ui.model.odata.type.Byte' , constraints:{ nullable:false } }"/>
@@ -185,8 +219,7 @@
 					<Label text="Disve" required="true"/>
 					<Input name="Disve" id="Disve_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
 						value="{ path: 'Disve', type: 'sap.ui.model.odata.type.Byte' , constraints:{ nullable:false } }"/>
-				</f:content>
-			</f:SimpleForm>
+						-->
 		</semantic:content>
 		<semantic:saveAction>
 			<semantic:SaveAction id="save" enabled="{viewModel>/enableCreate}" press="onSave"/>

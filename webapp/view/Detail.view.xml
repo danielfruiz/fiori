@@ -1,76 +1,126 @@
 <mvc:View controllerName="enap.f2.ZHR_SOL_VAC.controller.Detail" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic"
-	xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table">
+	xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:f="sap.ui.layout.form" xmlns:t="sap.ui.table" xmlns:l="sap.ui.layout"
+	xmlns:core="sap.ui.core">
 	<semantic:DetailPage id="page" navButtonPress="onNavBack" showNavButton="{device>/system/phone}" title="{i18n>detailTitle}"
 		busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">
 		<semantic:content>
-			<!--<ObjectHeader id="objectHeader" title="{Begda}" number="{ path: 'FleCo', formatter: '.formatter.currencyValue' }"></ObjectHeader>-->
-			<f:SimpleForm id="SimpleFormDisplay354" minWidth="1024" maxContainerCols="2" editable="false" layout="ResponsiveGridLayout" title="{i18n>empleadoTitulo}"
-				labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="1">
+			<!--EMPLEADO-->
+			<f:SimpleForm id="sfEmpleado" editable="false" layout="ResponsiveGridLayout" title="{i18n>empleadoTitulo}" maxContainerCols="2"
+				labelSpanL="6" labelSpanM="6" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
 				<f:content>
+					<core:Title text="Datos Personales"/>
 					<Label text="{i18n>empleadoNombre}"/>
 					<Text text="{toEmpleado/Name}"/>
+					<Label text="{i18n>empleadoFIngreso}"/>
+					<Text text="{parts: ['toEmpleado/Fingr'], formatter: '.formatter.fecha'}"/>
+					<Label text="{i18n>empleadoConvenio}"/>
+					<Text text="{toEmpleado/Trfgb} - {toEmpleado/Trfgbd}"/>
+					<Label text="{i18n>empleadoRegimen}"/>
+					<Text text="{toEmpleado/Schkz} - {toEmpleado/Schkzd}"/>
+					<core:Title text="Asignación Organizativa"/>
 					<Label text="{i18n>empleadoSociedad}"/>
 					<Text text="{toEmpleado/Bukrs} - {toEmpleado/Bukrsd}"/>
 					<Label text="{i18n>empleadoDivision}"/>
 					<Text text="{toEmpleado/Werks} - {toEmpleado/Werksd}"/>
-					<Label text="{i18n>empleadoConvenio}"/>
-					<Text text="{toEmpleado/Trfgb} - {toEmpleado/Trfgbd}"/>
 				</f:content>
 			</f:SimpleForm>
-		<!--	<Table id="lineItemsList" width="auto" items="{toEmpleado/toDiasLegales}" updateFinished="onListUpdateFinished"
-				noDataText="{i18n>detailLineItemTableNoDataText}" busyIndicatorDelay="{detailView>/lineItemTableDelay}" class="sapUiResponsiveMargin">
-				<headerToolbar>
-					<Toolbar id="lineItemsToolbar">
-						<Title id="lineItemsHeader" text="{detailView>/lineItemListTitle}"/>
-					</Toolbar>
-				</headerToolbar>
-				<columns>
-					<Column>
-						<Text text="{i18n>begda}"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>endda}"/>
-					</Column>
-					<Column minScreenWidth="Tablet" demandPopin="true">
-						<Text text="{i18n>dispo}"/>
-					</Column>
-				</columns>
-				<items>
-					<ColumnListItem>
-						<cells>
-							<ObjectIdentifier text="{ path: 'Begda', formatter: '.formatter.fecha' }"/>
-							<ObjectIdentifier text="{ path: 'Endda', formatter: '.formatter.fecha' }"/>
-							<ObjectIdentifier title="{}" text="{Dispo}"/>
-							<ObjectNumber number="{Dispo}" unit="Días"/>
-						</cells>
-					</ColumnListItem>
-				</items>
-			</Table>-->
-			<t:Table
-				id="lineItemsList12"
-				rows="{path: 'toEmpleado/toDiasLegales'}"
-				title="Products"
-				busyIndicatorDelay="{detailView>/lineItemTableDelay}"
-				selectionMode="None">
+			<!--SOLICITUD-->
+			<f:SimpleForm id="sfSolicitud" editable="false" layout="ResponsiveGridLayout" title="{i18n>solicitudTitulo}" maxContainerCols="2"
+				labelSpanL="7" labelSpanM="7" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2" >
+				<f:content>
+					<core:Title text="Datos Solicitud"/>
+					<Label text="{i18n>solicitudId}"/>
+					<Text text="{Idnum}"/>
+					<Label text="{i18n>Begda}"/>
+					<Text text="{parts: ['Begda'], formatter: '.formatter.fecha'}"/>
+					<Label text="{i18n>Endda}"/>
+					<Text text="{parts: ['Endda'], formatter: '.formatter.fecha'}"/>
+					<Label text="{i18n>Anticp}"/>
+					<Text text="{parts: ['Anticp'],  formatter: '.formatter.booleanoSiNo'}"/>
+					<Label text="{i18n>Presta}"/>
+					<Text text="{parts: ['Presta'],  formatter: '.formatter.booleanoSiNo'}"/>
+					<core:Title text="Dias Solicitdos"/>
+					<Label text="{i18n>FleCo}"/>
+					<Text text="{FleCo}"/>
+					<Label text="{i18n>FprCo}"/>
+					<Text text="{FprCo}"/>
+					<Label text="{i18n>FprVe}"/>
+					<Text text="{FprVe}"/>
+					<Label text="{i18n>FadCo}"/>
+					<Text text="{FadCo}"/>
+					<Label text="{i18n>FadVe}"/>
+					<Text text="{FadVe}"/>
+					
+					<!--<Label text="{i18n>Anticp}"/>-->
+					<!--<CheckBox editable="false" selected="{parts: ['Anticp'], formatter: '.formatter.booleanoSiNo'}" text="lol"/>-->
+					<!--<Label text="{i18n>Presta}"/>-->
+					<!--<CheckBox editable="false" selected="{parts: ['Presta'], formatter: '.formatter.booleanoSiNo'}">-->
+					<!--	<layoutData>-->
+					<!--		<l:GridData linebreak="true" indentL="4" indentM="4"/>-->
+					<!--	</layoutData>-->
+					<!--</CheckBox>-->
+				</f:content>
+			</f:SimpleForm>
+			<!--MAESTRO BGV-->
+			<!--<Table id="lineItemsList" width="auto" items="{toMaestroBGV}" updateFinished="onListUpdateFinished"-->
+			<!--	noDataText="{i18n>detailLineItemTableNoDataText}" busyIndicatorDelay="{detailView>/lineItemTableDelay}" class="sapUiResponsiveMargin">-->
+			<!--	<headerToolbar>-->
+			<!--		<Toolbar id="lineItemsToolbar">-->
+			<!--			<Title id="lineItemsHeader" text="{detailView>/lineItemListTitle}"/>-->
+			<!--		</Toolbar>-->
+			<!--	</headerToolbar>-->
+			<!--	<columns>-->
+			<!--		<Column>-->
+			<!--			<Text text="{i18n>Begda}"/>-->
+			<!--		</Column>-->
+			<!--		<Column minScreenWidth="Tablet" demandPopin="true">-->
+			<!--			<Text text="{i18n>Endda}"/>-->
+			<!--		</Column>-->
+			<!--		<Column minScreenWidth="Tablet" demandPopin="true">-->
+			<!--			<Text text="{i18n>Vname}"/>-->
+			<!--		</Column>-->
+			<!--	</columns>-->
+			<!--	<items>-->
+			<!--		<ColumnListItem>-->
+			<!--			<cells>-->
+			<!--				<ObjectIdentifier text="{ path: 'Begda' }"/>-->
+			<!--				<ObjectIdentifier text="{ path: 'Endda'}"/>-->
+			<!--				<ObjectIdentifier text="{Vname}"/>-->
+			<!--			</cells>-->
+			<!--		</ColumnListItem>-->
+			<!--	</items>-->
+			<!--</Table>-->
+			<t:Table id="lineItemsList" rows="{path: 'toMaestroBGV'}" title="{i18n>bgvTitulo}" busyIndicatorDelay="{detailView>/lineItemTableDelay}"
+				selectionMode="None" editable="false" visibleRowCountMode="Fixed" visibleRowCount="5" minAutoRowCount="0">
 				<t:columns>
 					<t:Column>
-						<Label text="{i18n>begda}" />
+						<Label text="{i18n>Begda} Período"/>
 						<t:template>
-							<Text text="{path: 'Begda', type: 'sap.ui.model.type.DateTime', formatOptions: {pattern: 'dd/MM/yyyy'}}"/>
-							<!--<Text text="{path: 'Begda', formatter: '.formatter.fecha'}"/>-->
-							<!--<Text text="{path: 'Begda'}"/>-->
+							<Text text="{parts: ['Begda'], formatter: '.formatter.fecha'}"/>
 						</t:template>
 					</t:Column>
 					<t:Column>
-						<Label text="{i18n>endda}" />
+						<Label text="{i18n>Endda} Período"/>
 						<t:template>
-							<Text text="{path: 'Endda', type: 'sap.ui.model.type.DateTime', formatOptions: {pattern: 'dd/MM/yyyy'}}"/>
+							<Text text="{parts: ['Endda'], formatter: '.formatter.fecha'}"/>
 						</t:template>
 					</t:Column>
 					<t:Column>
-						<Label text="{i18n>fleco}" />
+						<Label text="{i18n>Vname}"/>
 						<t:template>
-							<Text text="{path: 'Fleco', type: 'sap.ui.model.type.DateTime', formatOptions: {pattern: 'dd/MM/yyyy'}}"/>
+							<Text text="{Vname}"/>
+						</t:template>
+					</t:Column>
+					<t:Column>
+						<Label text="{i18n>Fbono}"/>
+						<t:template>
+							<CheckBox editable="false" selected="{parts: ['Fbono'], formatter: '.formatter.booleanoTrueFalse'}"/>
+						</t:template>
+					</t:Column>
+					<t:Column>
+						<Label text="{i18n>Fpres}"/>
+						<t:template>
+							<CheckBox editable="false" selected="{parts: ['Fpres'], formatter: '.formatter.booleanoTrueFalse'}"/>
 						</t:template>
 					</t:Column>
 				</t:columns>

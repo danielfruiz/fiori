@@ -18,17 +18,63 @@ sap.ui.define([], function () {
 		},
 
 		fecha: function (sValue) {
-			//var formatter = new Intl.DateTimeFormat("es-ES", { month: "short" });
-			//var date = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
-			//return sValue.toLocaleString();
+			if (sValue === null){
+				return sValue;
+			}
 			var meses = ["Ene", "Feb", "Mar", "Abr", "May", "Jun",
 				"Jul", "Ago", "Sept", "Oct", "Nov", "Dic"
 			];
-			var day = sValue.getDate();
+			var day = sValue.getUTCDate();
 			var monthIndex = sValue.getMonth();
 			var year = sValue.getFullYear();
-			return day + '/' + meses[monthIndex] + '/' + year;
+			return day + "/" + meses[monthIndex] + "/" + year;
 
+		},
+
+		statusTxt: function (sValue) {
+			switch (sValue) {
+			case "A":
+				return "Aprobado";
+			case "R":
+				return "Rechazado";
+			default:
+				return "Pendiente";
+			}
+		},
+
+		statusColor: function (sValue) {
+			switch (sValue) {
+			case "A":
+				return "Success";
+			case "R":
+				return "Error";
+			default:
+				return "None";
+			}
+		},
+		
+		booleanoSiNo: function (sValue) {
+			if (sValue === null || sValue === undefined){
+				return sValue; 
+			}
+			
+			var sFlag = sValue.toString().trim();
+			
+			if (sFlag === "X" || sValue === true){
+				return "Si";
+			}else if (sFlag === "" || sValue === false){
+				return "No";
+			}else{
+				return sValue;
+			}
+		},
+		
+		booleanoTrueFalse: function(sValue){
+			switch (sValue) {
+				case "X": return true;
+				case "": return false;	
+				default: return sValue;
+			}
 		}
 	};
 
