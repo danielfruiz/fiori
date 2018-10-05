@@ -1,15 +1,17 @@
 sap.ui.define([
 	"enap/f2/ZHR_SOL_VAC/controller/BaseController",
 	"sap/ui/model/json/JSONModel",
+	"enap/f2/ZHR_SOL_VAC/model/formatter",
 	"sap/m/MessageBox"
 
-], function (BaseController, JSONModel, MessageBox) {
+], function (BaseController, JSONModel, formatter, MessageBox) {
 	"use strict";
 
 	return BaseController.extend("enap.f2.ZHR_SOL_VAC.controller.CreateEntity", {
 
 		_oBinding: {},
-
+		formatter: formatter,
+		
 		/* =========================================================== */
 		/* lifecycle methods                                           */
 		/* =========================================================== */
@@ -27,7 +29,11 @@ sap.ui.define([
 				viewTitle: ""
 			});
 			this.setModel(this._oViewModel, "viewModel");
-
+			this.setModel(new JSONModel({}), "diasLegales");
+			this.setModel(new JSONModel({}), "diasProgresivos");
+			this.setModel(new JSONModel({}), "diasAdicionales");
+			
+			
 			// Register the view with the message manager
 			sap.ui.getCore().getMessageManager().registerObject(this.getView(), true);
 			var oMessagesModel = sap.ui.getCore().getMessageManager().getMessageModel();
@@ -115,6 +121,94 @@ sap.ui.define([
 				this._navBack();
 			}
 		},
+		
+		onLiveChangeFleCo: function(oEvent){
+			var sDias = oEvent.getParameter("value");
+			var iDias;
+			try {
+				iDias = Number(sDias);
+			} catch (err) {
+				iDias = 0;
+			}
+			
+			//bindear tabla
+			var oTable = this.getView().byId("solBGVList");
+			oTable.bindAggregation("items", {
+				path: "/solicitudBGVSet",
+				filters: [new sap.ui.model.Filter("FleCo", sap.ui.model.FilterOperator.EQ, iDias)],
+				template: oTable.getBindingInfo("items").template
+			});
+			
+			//this._validateSaveEnablement(oEvent);
+		},
+		
+		onListUpdateFinishedDiasLegales: function(oEvent){
+   			var items = this.byId("diasLegalesList").getBinding("items");
+   			var oModel = items.getModel();
+   			var i, aKey, oData, iSumAnzhl, iSumKverb, iSumDispo;
+   			
+   			iSumAnzhl = iSumDispo = iSumKverb = 0;
+   			
+   			for (i=0; i<items.aKeys.length; i++){
+   				aKey = items.aKeys[i];
+   				oData = oModel.oData[aKey];
+   				iSumAnzhl += oData.Anzhl;
+   				iSumKverb += oData.Kverb;
+   				iSumDispo += oData.Dispo;
+   			}
+   			
+   			var oDiasLegalesModel = this.getModel("diasLegales");
+   			oDiasLegalesModel.setProperty("/sumAnzhl", iSumAnzhl);    
+   			oDiasLegalesModel.setProperty("/sumKverb", iSumKverb);    
+   			oDiasLegalesModel.setProperty("/sumDispo", iSumDispo);    
+   		},
+   		
+   		onListUpdateFinishedDiasProgresivos: function(oEvent){
+   			var items = this.byId("diasProgresivosList").getBinding("items");
+   			var oModel = items.getModel();
+   			var i, aKey, oData, iSumAnzhl, iSumKverb, iSumVenta, iSumDispo;
+   			
+   			iSumAnzhl = iSumDispo = iSumKverb = iSumVenta = 0;
+   			
+   			for (i=0; i<items.aKeys.length; i++){
+   				aKey = items.aKeys[i];
+   				oData = oModel.oData[aKey];
+   				iSumAnzhl += oData.Anzhl;
+   				iSumKverb += oData.Kverb;
+   				iSumVenta += oData.Venta;
+   				iSumDispo += oData.Dispo;
+   			}
+   			
+   			var oDiasLegalesModel = this.getModel("diasProgresivos");
+   			oDiasLegalesModel.setProperty("/sumAnzhl", iSumAnzhl);    
+   			oDiasLegalesModel.setProperty("/sumKverb", iSumKverb);    
+   			oDiasLegalesModel.setProperty("/sumVenta", iSumVenta);    
+   			oDiasLegalesModel.setProperty("/sumDispo", iSumDispo);    
+   		},
+   		
+   		onListUpdateFinishedDiasAdicionales: function(oEvent){
+   			var items = this.byId("diasAdicionalesList").getBinding("items");
+   			var oModel = items.getModel();
+   			var i, aKey, oData, iSumAnzhl, iSumKverb, iSumVenta, iSumDispo;
+   			
+   			iSumAnzhl = iSumDispo = iSumKverb = iSumVenta = 0;
+   			
+   			for (i=0; i<items.aKeys.length; i++){
+   				aKey = items.aKeys[i];
+   				oData = oModel.oData[aKey];
+   				iSumAnzhl += oData.Anzhl;
+   				iSumKverb += oData.Kverb;
+   				iSumVenta += oData.Venta;
+   				iSumDispo += oData.Dispo;
+   			}
+   			
+   			var oDiasLegalesModel = this.getModel("diasAdicionales");
+   			oDiasLegalesModel.setProperty("/sumAnzhl", iSumAnzhl);    
+   			oDiasLegalesModel.setProperty("/sumKverb", iSumKverb);    
+   			oDiasLegalesModel.setProperty("/sumVenta", iSumVenta);    
+   			oDiasLegalesModel.setProperty("/sumDispo", iSumDispo);    
+   		},
+   		
 
 		/* =========================================================== */
 		/* Internal functions

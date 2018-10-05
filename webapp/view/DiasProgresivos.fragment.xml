@@ -1,0 +1,70 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:t="sap.ui.table">
+	<Table id="diasProgresivosList" inset="false" fixedLayout="false" items="{ path: '/diasProgresivosSet', sorter: { path: 'Begda' } }"
+		backgroundDesign="Transparent" noDataText="{i18n>detailLineItemTableNoDataText}" class="sapUiResponsiveMargin"
+		updateFinished="onListUpdateFinishedDiasProgresivos">
+		<headerToolbar>
+			<Toolbar id="tbDiasPro">
+				<Title id="tituloDiasPro" text="{i18n>diasProgresivoTabla}"/>
+			</Toolbar>
+		</headerToolbar>
+		<columns>
+			<Column hAlign="Center">
+				<Label text="{i18n>Begda} Período"/>
+			</Column>
+			<Column hAlign="Center">
+				<Label text="{i18n>Endda} Período"/>
+				<footer hAlign="Right">
+					<Label text="Total"/>
+				</footer>
+			</Column>
+			<Column hAlign="Right">
+				<Label text="{i18n>Anzhl}"/>
+				<footer hAlign="Right">
+					<Label text="{diasProgresivos>/sumAnzhl}"/>
+				</footer>
+			</Column>
+			<Column hAlign="Right">
+				<Label text="{i18n>Kverb}"/>
+				<footer hAlign="Right">
+					<Label text="{diasProgresivos>/sumKverb}"/>
+				</footer>
+			</Column>
+			<Column hAlign="Right">
+				<Label text="{i18n>Venta}"/>
+				<footer hAlign="Right">
+					<Label text="{diasProgresivos>/sumVenta}"/>
+				</footer>
+			</Column>
+			<Column hAlign="Right">
+				<Label text="{i18n>Dispo}"/>
+				<footer hAlign="Right">
+					<Label text="{diasProgresivos>/sumDispo}"/>
+				</footer>
+			</Column>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{parts: ['Begda'], formatter: '.formatter.fecha'}"/>
+					<Text text="{parts: ['Endda'], formatter: '.formatter.fecha'}"/>
+					<Text text="{Anzhl}"/>
+					<Text text="{Kverb}"/>
+					<Text text="{Venta}"/>
+					<Text text="{Dispo}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+	<f:SimpleForm class="editableForm" columnsL="1" columnsM="1" editable="true" emptySpanL="4" emptySpanM="4" id="frmDiasProgresivos"
+		labelSpanL="3" labelSpanM="3" layout="ResponsiveGridLayout" maxContainerCols="1" minWidth="1024">
+		<f:content>
+			<Label text="{i18n>diasProgresivoSolicitar}" required="false"/>
+			<Input name="FprCo" id="FprCo_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true" maxLength="2"
+				value="{ path: 'FprCo', type: 'sap.ui.model.odata.type.Byte' }"/>
+			<Label text="{i18n>diasProgresivoVender}" required="false"/>
+			<Input name="FprVe" id="FprVe_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true" maxLength="2"
+				value="{ path: 'FprVe', type: 'sap.ui.model.odata.type.Byte' }"/>
+		</f:content>
+	</f:SimpleForm>
+</core:FragmentDefinition>

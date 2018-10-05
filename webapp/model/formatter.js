@@ -18,15 +18,16 @@ sap.ui.define([], function () {
 		},
 
 		fecha: function (sValue) {
-			if (sValue === null){
+			// if (sValue === null || sValue === undefined){
+			if (!sValue){
 				return sValue;
 			}
 			var meses = ["Ene", "Feb", "Mar", "Abr", "May", "Jun",
 				"Jul", "Ago", "Sept", "Oct", "Nov", "Dic"
 			];
 			var day = sValue.getUTCDate();
-			var monthIndex = sValue.getMonth();
-			var year = sValue.getFullYear();
+			var monthIndex = sValue.getUTCMonth();
+			var year = sValue.getUTCFullYear();
 			return day + "/" + meses[monthIndex] + "/" + year;
 
 		},
@@ -54,7 +55,7 @@ sap.ui.define([], function () {
 		},
 		
 		booleanoSiNo: function (sValue) {
-			if (sValue === null || sValue === undefined){
+			if (!sValue){
 				return sValue; 
 			}
 			

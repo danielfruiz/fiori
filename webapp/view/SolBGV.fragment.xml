@@ -1,0 +1,87 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:t="sap.ui.table">
+	<IconTabBar id="itbSolBGV" upperCase="true" expanded="true" class="sapUiResponsiveContentPadding">
+		<items>
+			<!--SOLICITUD-->
+			<IconTabFilter text="Disponible Solicitar">
+				<Table id="solBGVList" inset="false" fixedLayout="false" items="{ path: '/solicitudBGVSet', sorter: { path: 'Begda' } }"
+					backgroundDesign="Transparent" noDataText="{i18n>detailLineItemTableNoDataText}" class="sapUiResponsiveMargin"
+					updateFinished="onListUpdateFinished">
+					<!--<headerToolbar>
+						<Toolbar id="lineItemsToolbar">
+							<Title id="tituloDiasLeg" text="{i18n>historicoBGVTabla}"/>
+						</Toolbar>
+					</headerToolbar>-->
+					<columns>
+						<Column hAlign="Center">
+							<Label text="{i18n>Begda} Período"/>
+						</Column>
+						<Column hAlign="Center">
+							<Label text="{i18n>Endda} Período"/>
+						</Column>
+						<Column hAlign="Center">
+							<Label text="{i18n>Vname}"/>
+						</Column>
+						<Column hAlign="Center">
+							<Label text="{i18n>Fbono}"/>
+						</Column>
+						<Column hAlign="Center">
+							<Label text="{i18n>Fpres}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{parts: ['Begda'], formatter: '.formatter.fecha'}"/>
+								<Text text="{parts: ['Endda'], formatter: '.formatter.fecha'}"/>
+								<Text text="{Vname}"/>
+								<CheckBox editable="true" selected="{parts: ['Fbono'], formatter: '.formatter.booleanoTrueFalse'}"/>
+								<CheckBox editable="true" selected="{parts: ['Fpres'], formatter: '.formatter.booleanoTrueFalse'}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</IconTabFilter>
+			<!--HISTORICO-->
+			<IconTabFilter text="Histórico Solicitudes">
+				<Table id="solBGVHistList" inset="false" fixedLayout="false" items="{ path: '/historicoBGVSet', sorter: { path: 'Begda' } }"
+					backgroundDesign="Transparent" noDataText="{i18n>detailLineItemTableNoDataText}" class="sapUiResponsiveMargin"
+					updateFinished="onListUpdateFinished">
+					<!--<headerToolbar>
+						<Toolbar id="lineItemsToolbar">
+							<Title id="tituloDiasLeg" text="{i18n>historicoBGVTabla}"/>
+						</Toolbar>
+					</headerToolbar>-->
+					<columns>
+						<Column hAlign="Center">
+							<Label text="{i18n>Begda} Período"/>
+						</Column>
+						<Column hAlign="Center">
+							<Label text="{i18n>Endda} Período"/>
+						</Column>
+						<Column hAlign="Center">
+							<Label text="{i18n>Vname}"/>
+						</Column>
+						<Column hAlign="Center">
+							<Label text="{i18n>Fbono}"/>
+						</Column>
+						<Column hAlign="Center">
+							<Label text="{i18n>Fpres}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{parts: ['Begda'], formatter: '.formatter.fecha'}"/>
+								<Text text="{parts: ['Endda'], formatter: '.formatter.fecha'}"/>
+								<Text text="{Vname}"/>
+								<CheckBox editable="false" selected="{parts: ['Fbono'], formatter: '.formatter.booleanoTrueFalse'}"/>
+								<CheckBox editable="false" selected="{parts: ['Fpres'], formatter: '.formatter.booleanoTrueFalse'}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</IconTabFilter>
+		</items>
+	</IconTabBar>
+</core:FragmentDefinition>

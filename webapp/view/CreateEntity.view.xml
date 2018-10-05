@@ -1,6 +1,6 @@
 <mvc:View controllerName="enap.f2.ZHR_SOL_VAC.controller.CreateEntity" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form"
 	xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:l="sap.ui.layout" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic"
-	xmlns:smart="sap.ui.comp.smartfield" xmlns="sap.m">
+	xmlns:smart="sap.ui.comp.smartfield" xmlns="sap.m" xmlns:t="sap.ui.table">
 	<semantic:DetailPage id="page" navButtonPress="onNavBack" title="{viewModel>/viewTitle}" busy="{viewModel>/busy}">
 		<semantic:content>
 			<!--EMPLEADO-->
@@ -26,36 +26,62 @@
 			<!--CABECERA SOLICITUD-->
 			<f:SimpleForm class="editableForm" columnsL="1" columnsM="1" editable="true" emptySpanL="4" emptySpanM="4" id="newEntitySimpleForm"
 				labelSpanL="3" labelSpanM="3" layout="ResponsiveGridLayout" maxContainerCols="2" minWidth="1024" title="{viewModel>/viewTitle}">
-				<!--title="{= ${viewModel>/mode} === 'edit'? 'Edit ZHR_SOL_VAC_SRV.solicitudVacaciones': 'New ZHR_SOL_VAC_SRV.solicitudVacaciones'}">-->
 				<f:content>
 					<Label text="{i18n>Idnum}" required="false"/>
 					<Input name="Idnum" id="Idnum_id" valueLiveUpdate="false" liveChange="_validateSaveEnablement" enabled="false" visible="true"
 						value="{ path: 'Idnum', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:16, nullable:false } }"/>
-					<Label text="{i18n>FleCo}" required="true"/>
-					<Input name="FleCo" id="FleCo_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
-						value="{ path: 'FleCo', type: 'sap.ui.model.odata.type.Byte' , constraints:{ nullable:false } }"/>
 					<Label text="{i18n>Begda}" required="true"/>
 					<DatePicker name="Begda" value="{ path: 'Begda', type: 'sap.ui.model.type.Date', formatOptions:{UTC: 'true', pattern:'dd/MMM/yyyy'}}"
 						id="Begda_id" change="_validateSaveEnablement"/>
 					<Label text="{i18n>Endda}" required="false"/>
 					<DatePicker name="Endda" value="{ path: 'Endda', type: 'sap.ui.model.type.Date', formatOptions:{UTC: 'true', pattern:'dd/MMM/yyyy'}}"
 						id="Endda_id" change="_validateSaveEnablement" enabled="false"/>
+					<Label text="" required="false"/>
+					<CheckBox name="Anticp" id="Anticp_id" select="_validateSaveEnablement" enabled="true" visible="true" text="{i18n>Anticp}"
+						selected="{ path: 'Anticp', formatter: '.formatter.booleanoTrueFalse' }"/>
+					<Label text="" required="false"/>
+					<CheckBox name="Presta" id="Presta_id" select="_validateSaveEnablement" enabled="true" visible="true" text="{i18n>Presta}"
+						selected="{ path: 'Presta', formatter: '.formatter.booleanoTrueFalse' }"/>
 				</f:content>
 			</f:SimpleForm>
-			<IconTabBar id="itbSolicitud" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
-				<items>
-					<IconTabFilter text="Detalle Dias Legales">
-						<Text text="Info content goes here ..."/>
-					</IconTabFilter>
-					<IconTabFilter text="Detalle Dias Progresivos">
-						<Text text="Attachments go here ..."/>
-					</IconTabFilter>
-					<IconTabFilter text="Detalle Dias Ejecutivos">
-						<Text text="Notes go here ..."/>
-					</IconTabFilter>
-				</items>
-			</IconTabBar>
-			<!--
+			<!--DIAS LEGALES-->
+			<Panel expandable="{= ${device>/system/phone} ? true : false}" expanded="{= ${device>/system/phone} ? false : true}"
+				headerText="{i18n>diasLegalTitulo}" width="auto" class="sapUiResponsiveMargin">
+				<content>
+					<core:Fragment fragmentName="enap.f2.ZHR_SOL_VAC.view.DiasLegales" type="XML"/>
+				</content>
+			</Panel>
+			<!--DIAS PROGRESIVOS-->
+			<Panel expandable="{= ${device>/system/phone} ? true : false}" expanded="{= ${device>/system/phone} ? false : true}"
+				headerText="{i18n>diasProgresivoTitulo}" width="auto" class="sapUiResponsiveMargin">
+				<content>
+					<core:Fragment fragmentName="enap.f2.ZHR_SOL_VAC.view.DiasProgresivos" type="XML"/>
+				</content>
+			</Panel>
+			<!--DIAS ADICIONALES-->
+			<Panel expandable="{= ${device>/system/phone} ? true : false}" expanded="{= ${device>/system/phone} ? false : true}"
+				headerText="{i18n>diasAdicionalesTitulo}" width="auto" class="sapUiResponsiveMargin">
+				<content>
+					<core:Fragment fragmentName="enap.f2.ZHR_SOL_VAC.view.DiasAdicionales" type="XML"/>
+				</content>
+			</Panel>
+			<!--SOLICITUD BGV-->
+			<Panel expandable="{= ${device>/system/phone} ? true : false}" expanded="{= ${device>/system/phone} ? false : true}"
+				headerText="{i18n>solBGVTitulo}" width="auto" class="sapUiResponsiveMargin">
+				<content>
+					<core:Fragment fragmentName="enap.f2.ZHR_SOL_VAC.view.SolBGV" type="XML"/>
+				</content>
+			</Panel>
+		</semantic:content>
+		<semantic:saveAction>
+			<semantic:SaveAction id="save" enabled="{viewModel>/enableCreate}" press="onSave"/>
+		</semantic:saveAction>
+		<semantic:cancelAction>
+			<semantic:CancelAction id="cancel" press="onCancel"></semantic:CancelAction>
+		</semantic:cancelAction>
+	</semantic:DetailPage>
+</mvc:View>
+<!--
 					<Label text="Personnel no." required="true"/>
 					<Input name="Pernr" id="Pernr_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
 						value="{ path: 'Pernr', type: 'sap.ui.model.odata.type.String' , constraints:{ maxLength:8, nullable:false } }"/>
@@ -220,12 +246,3 @@
 					<Input name="Disve" id="Disve_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true"
 						value="{ path: 'Disve', type: 'sap.ui.model.odata.type.Byte' , constraints:{ nullable:false } }"/>
 						-->
-		</semantic:content>
-		<semantic:saveAction>
-			<semantic:SaveAction id="save" enabled="{viewModel>/enableCreate}" press="onSave"/>
-		</semantic:saveAction>
-		<semantic:cancelAction>
-			<semantic:CancelAction id="cancel" press="onCancel"></semantic:CancelAction>
-		</semantic:cancelAction>
-	</semantic:DetailPage>
-</mvc:View>
