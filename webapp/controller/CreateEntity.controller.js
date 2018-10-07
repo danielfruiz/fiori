@@ -1,10 +1,11 @@
 sap.ui.define([
 	"enap/f2/ZHR_SOL_VAC/controller/BaseController",
 	"sap/ui/model/json/JSONModel",
+	"sap/ui/model/odata/ODataModel",
 	"enap/f2/ZHR_SOL_VAC/model/formatter",
 	"sap/m/MessageBox"
 
-], function (BaseController, JSONModel, formatter, MessageBox) {
+], function (BaseController, JSONModel, ODataModel, formatter, MessageBox) {
 	"use strict";
 
 	return BaseController.extend("enap.f2.ZHR_SOL_VAC.controller.CreateEntity", {
@@ -46,6 +47,19 @@ sap.ui.define([
 					}
 				}
 			});
+			
+			//bindear Empleado
+			var sfEmpleado = this.byId("sfEmpleado");
+			sfEmpleado.bindElement({
+				path: "/empleadoSet('0')"
+			});
+			
+			var sServiceUrl = "/empleadoSet('0')?$expand=toActivadores";
+			var oData = {};
+			var oEmpModel = new ODataModel(sServiceUrl);
+			oEmpModel.create(sServiceUrl);
+			this.setModel(oEmpModel, "empleadoSet");
+			
 		},
 
 		/* =========================================================== */

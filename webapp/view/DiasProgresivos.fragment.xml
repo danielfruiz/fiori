@@ -60,11 +60,11 @@
 		labelSpanL="3" labelSpanM="3" layout="ResponsiveGridLayout" maxContainerCols="1" minWidth="1024">
 		<f:content>
 			<Label text="{i18n>diasProgresivoSolicitar}" required="false"/>
-			<Input name="FprCo" id="FprCo_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true" maxLength="2"
-				value="{ path: 'FprCo', type: 'sap.ui.model.odata.type.Byte' }"/>
+			<Input name="FprCo" type="Number" id="FprCo_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" visible="true" maxLength="2"
+				value="{ path: 'FprCo', type: 'sap.ui.model.odata.type.Byte' }" enabled="{= ${diasProgresivos>/sumDispo} > 0  ? true : false }"/>
 			<Label text="{i18n>diasProgresivoVender}" required="false"/>
-			<Input name="FprVe" id="FprVe_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true" visible="true" maxLength="2"
-				value="{ path: 'FprVe', type: 'sap.ui.model.odata.type.Byte' }"/>
+			<Input name="FprVe" type="Number" id="FprVe_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" visible="true" maxLength="2"
+				value="{ path: 'FprVe', type: 'sap.ui.model.odata.type.Byte' }" enabled="{= ${diasProgresivos>/sumDispo} > 0  ? true : false }"/>
 		</f:content>
 	</f:SimpleForm>
 </core:FragmentDefinition>

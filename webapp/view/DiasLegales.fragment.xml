@@ -53,8 +53,8 @@
 		labelSpanL="3" labelSpanM="3" layout="ResponsiveGridLayout" maxContainerCols="1" minWidth="1024" >
 		<f:content>
 			<Label text="{i18n>diasLegalSolicitar}" required="false"/>
-			<Input name="FleCo" id="FleCo_id" valueLiveUpdate="false" liveChange="onLiveChangeFleCo" enabled="true" visible="true" maxLength="2"
-				value="{ path: 'FleCo', type: 'sap.ui.model.odata.type.Byte' }"/>
+			<Input name="FleCo" id="FleCo_id" type="Number" valueLiveUpdate="false" liveChange="onLiveChangeFleCo" visible="true" maxLength="2"
+				value="{ path: 'FleCo', type: 'sap.ui.model.odata.type.Byte' }" enabled="{= ${diasLegales>/sumDispo} > 0  ? true : false }"/>
 		</f:content>
 	</f:SimpleForm>
 </core:FragmentDefinition>

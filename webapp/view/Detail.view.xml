@@ -5,134 +5,107 @@
 		busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">
 		<semantic:content>
 			<!--EMPLEADO-->
-			<f:SimpleForm id="sfEmpleado" editable="false" layout="ResponsiveGridLayout" title="{i18n>empleadoTitulo}" maxContainerCols="2"
-				labelSpanL="6" labelSpanM="6" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
-				<f:content>
-					<core:Title text="Datos Personales"/>
-					<Label text="{i18n>empleadoNombre}"/>
-					<Text text="{toEmpleado/Name}"/>
-					<Label text="{i18n>empleadoFIngreso}"/>
-					<Text text="{parts: ['toEmpleado/Fingr'], formatter: '.formatter.fecha'}"/>
-					<Label text="{i18n>empleadoConvenio}"/>
-					<Text text="{toEmpleado/Trfgb} - {toEmpleado/Trfgbd}"/>
-					<Label text="{i18n>empleadoRegimen}"/>
-					<Text text="{toEmpleado/Schkz} - {toEmpleado/Schkzd}"/>
-					<core:Title text="Asignación Organizativa"/>
-					<Label text="{i18n>empleadoSociedad}"/>
-					<Text text="{toEmpleado/Bukrs} - {toEmpleado/Bukrsd}"/>
-					<Label text="{i18n>empleadoDivision}"/>
-					<Text text="{toEmpleado/Werks} - {toEmpleado/Werksd}"/>
-				</f:content>
-			</f:SimpleForm>
+			<Panel expandable="{= ${device>/system/phone} ? true : false}" expanded="{= ${device>/system/phone} ? false : true}"
+				headerText="{i18n>empleadoTitulo}" width="auto" class="sapUiResponsiveMargin">
+				<f:SimpleForm id="sfEmpleado" editable="false" layout="ResponsiveGridLayout" maxContainerCols="2"
+					labelSpanL="6" labelSpanM="6" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+					<f:content>
+						<core:Title text="Datos Personales"/>
+						<Label text="{i18n>empleadoNombre}"/>
+						<Text text="{toEmpleado/Name}"/>
+						<Label text="{i18n>empleadoFIngreso}"/>
+						<Text text="{parts: ['toEmpleado/Fingr'], formatter: '.formatter.fecha'}"/>
+						<Label text="{i18n>empleadoConvenio}"/>
+						<Text text="{toEmpleado/Trfgb} - {toEmpleado/Trfgbd}"/>
+						<Label text="{i18n>empleadoRegimen}"/>
+						<Text text="{toEmpleado/Schkz} - {toEmpleado/Schkzd}"/>
+						<core:Title text="Asignación Organizativa"/>
+						<Label text="{i18n>empleadoSociedad}"/>
+						<Text text="{toEmpleado/Bukrs} - {toEmpleado/Bukrsd}"/>
+						<Label text="{i18n>empleadoDivision}"/>
+						<Text text="{toEmpleado/Werks} - {toEmpleado/Werksd}"/>
+					</f:content>
+				</f:SimpleForm>
+			</Panel>
 			<!--SOLICITUD-->
-			<f:SimpleForm id="sfSolicitud" editable="false" layout="ResponsiveGridLayout" title="{i18n>solicitudTitulo}" maxContainerCols="2"
-				labelSpanL="7" labelSpanM="7" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
-				<f:content>
-					<core:Title text="Datos Solicitud"/>
-					<Label text="{i18n>solicitudId}"/>
-					<Text text="{Idnum}"/>
-					<Label text="{i18n>Begda}"/>
-					<Text text="{parts: ['Begda'], formatter: '.formatter.fecha'}"/>
-					<Label text="{i18n>Endda}"/>
-					<Text text="{parts: ['Endda'], formatter: '.formatter.fecha'}"/>
-					<Label text="{i18n>Anticp}"/>
-					<Text text="{parts: ['Anticp'], formatter: '.formatter.booleanoSiNo'}"/>
-					<Label text="{i18n>Presta}"/>
-					<Text text="{parts: ['Presta'], formatter: '.formatter.booleanoSiNo'}"/>
-					<core:Title text="Dias Solicitdos"/>
-					<Label text="{i18n>FleCo}"/>
-					<Text text="{FleCo}"/>
-					<Label text="{i18n>FprCo}"/>
-					<Text text="{FprCo}"/>
-					<Label text="{i18n>FprVe}"/>
-					<Text text="{FprVe}"/>
-					<Label text="{i18n>FadCo}"/>
-					<Text text="{FadCo}"/>
-					<Label text="{i18n>FadVe}"/>
-					<Text text="{FadVe}"/>
-					<!--<Label text="{i18n>Anticp}"/>-->
-					<!--<CheckBox editable="false" selected="{parts: ['Anticp'], formatter: '.formatter.booleanoSiNo'}" text="lol"/>-->
-					<!--<Label text="{i18n>Presta}"/>-->
-					<!--<CheckBox editable="false" selected="{parts: ['Presta'], formatter: '.formatter.booleanoSiNo'}">-->
-					<!--	<layoutData>-->
-					<!--		<l:GridData linebreak="true" indentL="4" indentM="4"/>-->
-					<!--	</layoutData>-->
-					<!--</CheckBox>-->
-				</f:content>
-			</f:SimpleForm>
+			<Panel expandable="{= ${device>/system/phone} ? true : false}" expanded="true" headerText="{i18n>solicitudTitulo}" width="auto"
+				class="sapUiResponsiveMargin">
+				<f:SimpleForm id="sfSolicitud" editable="false" layout="ResponsiveGridLayout"  maxContainerCols="2"
+					labelSpanL="7" labelSpanM="7" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+					<f:content>
+						<core:Title text="Datos Solicitud"/>
+						<Label text="{i18n>solicitudId}"/>
+						<Text text="{Idnum}"/>
+						<Label text="{i18n>Begda}"/>
+						<Text text="{parts: ['Begda'], formatter: '.formatter.fecha'}"/>
+						<Label text="{i18n>Endda}"/>
+						<Text text="{parts: ['Endda'], formatter: '.formatter.fecha'}"/>
+						<Label text="{i18n>Anticp}"/>
+						<Text text="{parts: ['Anticp'], formatter: '.formatter.booleanoSiNo'}"/>
+						<Label text="{i18n>Presta}"/>
+						<Text text="{parts: ['Presta'], formatter: '.formatter.booleanoSiNo'}"/>
+						<core:Title text="Dias Solicitdos"/>
+						<Label text="{i18n>FleCo}"/>
+						<Text text="{FleCo}"/>
+						<Label text="{i18n>FprCo}"/>
+						<Text text="{FprCo}"/>
+						<Label text="{i18n>FprVe}"/>
+						<Text text="{FprVe}"/>
+						<Label text="{i18n>FadCo}"/>
+						<Text text="{FadCo}"/>
+						<Label text="{i18n>FadVe}"/>
+						<Text text="{FadVe}"/>
+						<!--<Label text="{i18n>Anticp}"/>-->
+						<!--<CheckBox editable="false" selected="{parts: ['Anticp'], formatter: '.formatter.booleanoSiNo'}" text="lol"/>-->
+						<!--<Label text="{i18n>Presta}"/>-->
+						<!--<CheckBox editable="false" selected="{parts: ['Presta'], formatter: '.formatter.booleanoSiNo'}">-->
+						<!--	<layoutData>-->
+						<!--		<l:GridData linebreak="true" indentL="4" indentM="4"/>-->
+						<!--	</layoutData>-->
+						<!--</CheckBox>-->
+					</f:content>
+				</f:SimpleForm>
+			</Panel>
 			<!--MAESTRO BGV-->
-			<!--<t:Table id="lineItemsList" rows="{path: 'toMaestroBGV'}" title="{i18n>bgvTitulo}" busyIndicatorDelay="{detailView>/lineItemTableDelay}"
-				selectionMode="None" editable="false" visibleRowCountMode="Fixed" visibleRowCount="5" minAutoRowCount="0">
-				<t:columns>
-					<t:Column>
-						<Label text="{i18n>Begda} Período"/>
-						<t:template>
-							<Text text="{parts: ['Begda'], formatter: '.formatter.fecha'}"/>
-						</t:template>
-					</t:Column>
-					<t:Column>
-						<Label text="{i18n>Endda} Período"/>
-						<t:template>
-							<Text text="{parts: ['Endda'], formatter: '.formatter.fecha'}"/>
-						</t:template>
-					</t:Column>
-					<t:Column>
-						<Label text="{i18n>Vname}"/>
-						<t:template>
-							<Text text="{Vname}"/>
-						</t:template>
-					</t:Column>
-					<t:Column>
-						<Label text="{i18n>Fbono}"/>
-						<t:template>
-							<CheckBox editable="false" selected="{parts: ['Fbono'], formatter: '.formatter.booleanoTrueFalse'}"/>
-						</t:template>
-					</t:Column>
-					<t:Column>
-						<Label text="{i18n>Fpres}"/>
-						<t:template>
-							<CheckBox editable="false" selected="{parts: ['Fpres'], formatter: '.formatter.booleanoTrueFalse'}"/>
-						</t:template>
-					</t:Column>
-				</t:columns>
-			</t:Table>-->
-			<Table id="solBGVHistList" inset="false" fixedLayout="false" items="{ path: 'toMaestroBGV', sorter: { path: 'Begda' } }"
-				backgroundDesign="Solid" noDataText="{i18n>detailLineItemTableNoDataText}" class="sapUiResponsiveMargin"
-				updateFinished="none">
-				<headerToolbar>
+			<Panel expandable="{= ${device>/system/phone} ? true : false}" expanded="{= ${device>/system/phone} ? false : true}"
+				headerText="{i18n>bgvTitulo}" width="auto" class="sapUiResponsiveMargin">
+				<Table id="solBGVHistList" inset="false" fixedLayout="false" items="{ path: 'toMaestroBGV', sorter: { path: 'Begda' } }"
+					backgroundDesign="Solid" noDataText="{i18n>detailLineItemTableNoDataText}" class="sapUiResponsiveMargin" updateFinished="none">
+					<headerToolbar>
 						<Toolbar id="lineItemsToolbar">
 							<Title id="tituloBGV" text="{i18n>bgvTitulo}"/>
 						</Toolbar>
 					</headerToolbar>
-				<columns>
-					<Column hAlign="Center">
-						<Label text="{i18n>Begda} Período"/>
-					</Column>
-					<Column hAlign="Center">
-						<Label text="{i18n>Endda} Período"/>
-					</Column>
-					<Column hAlign="Center">
-						<Label text="{i18n>Vname}"/>
-					</Column>
-					<Column hAlign="Center">
-						<Label text="{i18n>Fbono}"/>
-					</Column>
-					<Column hAlign="Center">
-						<Label text="{i18n>Fpres}"/>
-					</Column>
-				</columns>
-				<items>
-					<ColumnListItem>
-						<cells>
-							<Text text="{parts: ['Begda'], formatter: '.formatter.fecha'}"/>
-							<Text text="{parts: ['Endda'], formatter: '.formatter.fecha'}"/>
-							<Text text="{Vname}"/>
-							<CheckBox editable="false" selected="{parts: ['Fbono'], formatter: '.formatter.booleanoTrueFalse'}"/>
-							<CheckBox editable="false" selected="{parts: ['Fpres'], formatter: '.formatter.booleanoTrueFalse'}"/>
-						</cells>
-					</ColumnListItem>
-				</items>
-			</Table>
+					<columns>
+						<Column hAlign="Center">
+							<Label text="{i18n>Begda} Período"/>
+						</Column>
+						<Column hAlign="Center">
+							<Label text="{i18n>Endda} Período"/>
+						</Column>
+						<Column hAlign="Center">
+							<Label text="{i18n>Vname}"/>
+						</Column>
+						<Column hAlign="Center">
+							<Label text="{i18n>Fbono}"/>
+						</Column>
+						<Column hAlign="Center">
+							<Label text="{i18n>Fpres}"/>
+						</Column>
+					</columns>
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{parts: ['Begda'], formatter: '.formatter.fecha'}"/>
+								<Text text="{parts: ['Endda'], formatter: '.formatter.fecha'}"/>
+								<Text text="{Vname}"/>
+								<CheckBox editable="false" selected="{parts: ['Fbono'], formatter: '.formatter.booleanoTrueFalse'}"/>
+								<CheckBox editable="false" selected="{parts: ['Fpres'], formatter: '.formatter.booleanoTrueFalse'}"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</Panel>
 		</semantic:content>
 		<!--<semantic:editAction>
 			<semantic:EditAction id="edit" press="onEdit"/>
