@@ -75,8 +75,8 @@
 								<Text text="{parts: ['Begda'], formatter: '.formatter.fecha'}"/>
 								<Text text="{parts: ['Endda'], formatter: '.formatter.fecha'}"/>
 								<Text text="{Vname}"/>
-								<CheckBox editable="false" selected="{parts: ['Fbono'], formatter: '.formatter.booleanoTrueFalse'}"/>
-								<CheckBox editable="false" selected="{parts: ['Fpres'], formatter: '.formatter.booleanoTrueFalse'}"/>
+								<CheckBox editable="false" selected="{parts: ['Fbono'], formatter: '.formatter.booleanoTrueFalse'}" />
+								<CheckBox editable="false" selected="{parts: ['Fpres'], formatter: '.formatter.booleanoTrueFalse'}" />
 							</cells>
 						</ColumnListItem>
 					</items>

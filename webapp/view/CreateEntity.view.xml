@@ -26,14 +26,14 @@
 			</Panel>
 			<!--DIAS ADICIONALES-->
 			<Panel expandable="{= ${device>/system/phone} ? true : false}" expanded="{= ${device>/system/phone} ? false : true}"
-				headerText="{i18n>diasAdicionalesTitulo}" width="auto" class="sapUiResponsiveMargin">
+				headerText="{i18n>diasAdicionalesTitulo}" width="auto" class="sapUiResponsiveMargin"  visible="{activadores>/Cvl}">
 				<content>
 					<core:Fragment fragmentName="enap.f2.ZHR_SOL_VAC.view.DiasAdicionales" type="XML"/>
 				</content>
 			</Panel>
 			<!--SOLICITUD BGV-->
 			<Panel expandable="{= ${device>/system/phone} ? true : false}" expanded="{= ${device>/system/phone} ? false : true}"
-				headerText="{i18n>solBGVTitulo}" width="auto" class="sapUiResponsiveMargin">
+				headerText="{i18n>solBGVTitulo}" width="auto" class="sapUiResponsiveMargin" visible="{activadores>/Bgv}">
 				<content>
 					<core:Fragment fragmentName="enap.f2.ZHR_SOL_VAC.view.SolBGV" type="XML"/>
 				</content>
