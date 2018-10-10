@@ -1,5 +1,5 @@
-<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
-	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:t="sap.ui.table">
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns="sap.m" xmlns:t="sap.ui.table">
 	<IconTabBar id="itbSolBGV" upperCase="true" expanded="true" class="sapUiResponsiveContentPadding">
 		<items>
 			<!--SOLICITUD-->
@@ -32,11 +32,12 @@
 					<items>
 						<ColumnListItem>
 							<cells>
+								<!--<DatePicker value="{ path: 'Begda', type: 'sap.ui.model.type.Date', formatOptions:{UTC: 'true', pattern:'dd/MMM/yyyy'}}"/>-->
 								<Text text="{parts: ['Begda'], formatter: '.formatter.fecha'}"/>
 								<Text text="{parts: ['Endda'], formatter: '.formatter.fecha'}"/>
 								<Text text="{Vname}"/>
-								<CheckBox editable="true" selected="{parts: ['Fbono'], formatter: '.formatter.booleanoTrueFalse'}"/>
-								<CheckBox editable="true" selected="{parts: ['Fpres'], formatter: '.formatter.booleanoTrueFalse'}"/>
+								<CheckBox editable="true" selected="{parts: ['Fbono']}"/>
+								<CheckBox editable="true" selected="{parts: ['Fpres']}"/>
 							</cells>
 						</ColumnListItem>
 					</items>
@@ -75,8 +76,8 @@
 								<Text text="{parts: ['Begda'], formatter: '.formatter.fecha'}"/>
 								<Text text="{parts: ['Endda'], formatter: '.formatter.fecha'}"/>
 								<Text text="{Vname}"/>
-								<CheckBox editable="false" selected="{parts: ['Fbono'], formatter: '.formatter.booleanoTrueFalse'}" />
-								<CheckBox editable="false" selected="{parts: ['Fpres'], formatter: '.formatter.booleanoTrueFalse'}" />
+								<CheckBox editable="false" selected="{parts: ['Fbono'], formatter: '.formatter.booleanoTrueFalse'}"/>
+								<CheckBox editable="false" selected="{parts: ['Fpres'], formatter: '.formatter.booleanoTrueFalse'}"/>
 							</cells>
 						</ColumnListItem>
 					</items>

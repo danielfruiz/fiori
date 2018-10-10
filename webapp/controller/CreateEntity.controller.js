@@ -29,13 +29,12 @@ sap.ui.define([
 				mode: "create",
 				viewTitle: ""
 			});
-			
+
 			//SET MODELS
 			this.setModel(this._oViewModel, "viewModel");
 			this.setModel(new JSONModel({}), "diasLegales");
 			this.setModel(new JSONModel({}), "diasProgresivos");
 			this.setModel(new JSONModel({}), "diasAdicionales");
-
 
 			// Register the view with the message manager
 			sap.ui.getCore().getMessageManager().registerObject(this.getView(), true);
@@ -55,23 +54,20 @@ sap.ui.define([
 			sfEmpleado.bindElement({
 				path: "/empleadoSet('0')"
 			});
-			
+
 			var oEmpModel;
 			var _this = this;
-			 this._oODataModel.read("/empleadoSet('0')/toActivadores",  {
-			 	async: false,
-				success: function(oData, response) {
-					oEmpModel =  new JSONModel(oData);
+			this._oODataModel.read("/empleadoSet('0')/toActivadores", {
+				async: false,
+				success: function (oData, response) {
+					oEmpModel = new JSONModel(oData);
 					_this.setModel(oEmpModel, "activadores");
 				},
-				error: function() {
+				error: function () {
 					sap.m.MessageBox.alert("Error DataModel /empleadoSet('0')/toActivadores");
 				}
-				
-			});
-		
-		
 
+			});
 
 		},
 
@@ -98,6 +94,11 @@ sap.ui.define([
 				);
 				return;
 			}
+
+			if (!this._validaForm()) {
+				return;
+			}
+
 			this.getModel("appView").setProperty("/busy", true);
 			if (this._oViewModel.getProperty("/mode") === "edit") {
 				// attach to the request completed event of the batch
@@ -110,7 +111,89 @@ sap.ui.define([
 					}
 				});
 			}
+
+			//forzar envio de datos no modificados
+			var sPernr = this.getView().byId("Pernr_id").getText();
+			var sPath = this.getView().byId("Begda_id").getBindingContext().sPath;
+			oModel.setProperty(sPath + "/Pernr", sPernr);
+
+			var oTable = this.getView().byId("solBGVList");
+			var aFields = ["/Pernr", "/Carga", "/Begda", "/Endda", "/Relat", "/Vname"];
+			var i, aItems, oItem, sBinding, sField, oValue;
+
+			aItems = oTable.getItems();
+			for (i = 0; i < aItems.length; i++) {
+				oItem = aItems[i];
+				sBinding = oItem.getBindingContextPath();
+				for (sField in aFields) {
+					oValue = oModel.getProperty(sBinding + aFields[sField]);
+					if (oValue instanceof Date) {
+						oModel.setProperty(sBinding + aFields[sField], new Date(oValue.getTime() + 1));
+					} else {
+						oModel.setProperty(sBinding + aFields[sField], new String(oValue));
+					}
+
+				}
+			}
+
+			//
 			oModel.submitChanges();
+		},
+
+		_validaForm: function () {
+			var oView = this.getView();
+
+			//datos solicitud
+
+			if (this._isEmpty(oView.byId("Begda_id").getValue())) {
+				this._messageBox("E", "Debe ingresar Fecha de Inicio");
+				return false;
+			}
+
+			var Anticp_id = oView.byId("Anticp_id").getSelected();
+			var Presta_id = oView.byId("Presta_id").getSelected();
+			var DesCo_id = this._isEmpty(oView.byId("DesCo_id").getValue());
+			var FleCo_id = this._isEmpty(oView.byId("FleCo_id").getValue());
+			var FprCo_id = this._isEmpty(oView.byId("FprCo_id").getValue());
+			var FprVe_id = this._isEmpty(oView.byId("FprCo_id").getValue());
+			var FadCo_id = this._isEmpty(oView.byId("FprCo_id").getValue());
+			var FadVe_id = this._isEmpty(oView.byId("FprCo_id").getValue());
+
+			if (Anticp_id && Presta_id && DesCo_id &&
+				FleCo_id &&
+				FprCo_id && FprVe_id &&
+				FadCo_id && FadVe_id) {
+				this._messageBox("E", "Debe Solicitar al menos una opción");
+				return false;
+			}
+
+			return true;
+		},
+
+		_isEmpty: function (oValue) {
+			return !oValue || oValue == "0" || oValue == "";
+		},
+
+		_messageBox: function (sType, sMessage) {
+			var bCompact = !!this.getView().$().closest(".sapUiSizeCompact").length;
+			var styleClass = bCompact ? "sapUiSizeCompact" : "";
+
+			switch (sType) {
+			case "S":
+				MessageBox.success(sMessage, {
+					styleClass: styleClass
+				});
+				break;
+			case "E":
+				MessageBox.error(sMessage, {
+					styleClass: styleClass
+				});
+				break;
+			default:
+				MessageBox.information(sMessage, {
+					styleClass: styleClass
+				});
+			}
 		},
 
 		_checkIfBatchRequestSucceeded: function (oEvent) {
@@ -166,7 +249,8 @@ sap.ui.define([
 				template: oTable.getBindingInfo("items").template
 			});
 
-			this._validateSaveEnablement(oEvent);
+			//this._validateSaveEnablement(oEvent);
+			//this.getModel().updateBindings(true);
 		},
 
 		onListUpdateFinishedDiasLegales: function (oEvent) {

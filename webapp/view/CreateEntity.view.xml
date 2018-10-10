@@ -4,15 +4,14 @@
 	<semantic:DetailPage id="page" navButtonPress="onNavBack" title="{viewModel>/viewTitle}" busy="{viewModel>/busy}">
 		<semantic:content id="contSolicitud" binding="">
 			<!--DATOS SOLICITUD-->
-			<Panel expandable="false" expanded="true"
-				headerText="{i18n>solicitudTitulo}" width="auto" class="sapUiResponsiveMargin">
+			<Panel expandable="false" expanded="true" headerText="{i18n>solicitudTitulo}" width="auto" class="sapUiResponsiveMargin">
 				<content>
 					<core:Fragment fragmentName="enap.f2.ZHR_SOL_VAC.view.DatosSolicitud" type="XML"/>
 				</content>
 			</Panel>
 			<!--DIAS LEGALES-->
 			<Panel expandable="{= ${device>/system/phone} ? true : false}" expanded="{= ${device>/system/phone} ? false : true}"
-				headerText="{i18n>diasLegalTitulo}" width="auto" class="sapUiResponsiveMargin" >
+				headerText="{i18n>diasLegalTitulo}" width="auto" class="sapUiResponsiveMargin">
 				<content>
 					<core:Fragment fragmentName="enap.f2.ZHR_SOL_VAC.view.DiasLegales" type="XML"/>
 				</content>
@@ -26,7 +25,7 @@
 			</Panel>
 			<!--DIAS ADICIONALES-->
 			<Panel expandable="{= ${device>/system/phone} ? true : false}" expanded="{= ${device>/system/phone} ? false : true}"
-				headerText="{i18n>diasAdicionalesTitulo}" width="auto" class="sapUiResponsiveMargin"  visible="{activadores>/Cvl}">
+				headerText="{i18n>diasAdicionalesTitulo}" width="auto" class="sapUiResponsiveMargin" visible="{activadores>/Cvl}">
 				<content>
 					<core:Fragment fragmentName="enap.f2.ZHR_SOL_VAC.view.DiasAdicionales" type="XML"/>
 				</content>

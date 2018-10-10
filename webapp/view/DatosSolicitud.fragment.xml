@@ -17,25 +17,27 @@
 						<DatePicker name="Endda" value="{ path: 'Endda', type: 'sap.ui.model.type.Date', formatOptions:{UTC: 'true', pattern:'dd/MMM/yyyy'}}"
 							id="Endda_id" change="_validateSaveEnablement" enabled="false"/>
 						<Label text="" required="false" visible="{activadores>/Ads}"/>
-						<CheckBox name="Anticp" id="Anticp_id" select="_validateSaveEnablement" enabled="true" text="{i18n>Anticp}"
-							selected="{ path: 'Anticp', formatter: '.formatter.booleanoTrueFalse' }" visible="{activadores>/Ads}"/>
+						<CheckBox name="Anticp" id="Anticp_id" select="_validateSaveEnablement" enabled="true" text="{i18n>Anticp}" selected="{ path: 'Anticp' }"
+							visible="{activadores>/Ads}"/>
 						<Label text="" required="false" visible="{activadores>/Pva}"/>
-						<CheckBox name="Presta" id="Presta_id" select="_validateSaveEnablement" enabled="true" text="{i18n>Presta}"
-							selected="{ path: 'Presta', formatter: '.formatter.booleanoTrueFalse' }" visible="{activadores>/Pva}"/>
+						<CheckBox name="Presta" id="Presta_id" select="_validateSaveEnablement" enabled="true" text="{i18n>Presta}" selected="{ path: 'Presta' }"
+							visible="{activadores>/Pva}"/>
 						<Label text="{i18n>DesCo}" visible="{activadores>/Des}"/>
 						<Input name="DesCo" id="DesCo_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true"
-							value="{ path: 'DesCo', type: 'sap.ui.model.odata.type.Byte'}" visible="{activadores>/Des}"/> 
+							value="{ path: 'DesCo', type: 'sap.ui.model.odata.type.Byte'}" visible="{activadores>/Des}"/>
 					</f:content>
 				</f:SimpleForm>
 			</IconTabFilter>
 			<!--DATOS EMPLEADO-->
 			<IconTabFilter text="{i18n>datosEmpleado}">
-				<f:SimpleForm id="sfEmpleado" editable="false" layout="ResponsiveGridLayout" maxContainerCols="2"
-					labelSpanL="6" labelSpanM="6" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2" binding="/empleadoSet">
+				<f:SimpleForm id="sfEmpleado" editable="false" layout="ResponsiveGridLayout" maxContainerCols="2" labelSpanL="6" labelSpanM="6"
+					emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2" binding="/empleadoSet">
 					<f:content>
 						<core:Title text="Datos Personales"/>
 						<Label text="{i18n>empleadoNombre}"/>
 						<Text text="{Name}"/>
+						<Label text="{i18n>empleadoPernr}"/>
+						<Text text="{Pernr}" id="Pernr_id"/>
 						<Label text="{i18n>empleadoFIngreso}"/>
 						<Text text="{parts: ['Fingr'], formatter: '.formatter.fecha'}"/>
 						<Label text="{i18n>empleadoConvenio}"/>

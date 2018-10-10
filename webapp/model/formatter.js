@@ -19,7 +19,7 @@ sap.ui.define([], function () {
 
 		fecha: function (sValue) {
 			// if (sValue === null || sValue === undefined){
-			if (!sValue){
+			if (!sValue) {
 				return sValue;
 			}
 			var meses = ["Ene", "Feb", "Mar", "Abr", "May", "Jun",
@@ -53,28 +53,31 @@ sap.ui.define([], function () {
 				return "None";
 			}
 		},
-		
+
 		booleanoSiNo: function (sValue) {
-			if (!sValue){
-				return sValue; 
+			if (!sValue) {
+				return sValue;
 			}
-			
+
 			var sFlag = sValue.toString().trim();
-			
-			if (sFlag === "X" || sValue === true){
+
+			if (sFlag === "X" || sValue === true) {
 				return "Si";
-			}else if (sFlag === "" || sValue === false){
+			} else if (sFlag === "" || sValue === false) {
 				return "No";
-			}else{
+			} else {
 				return sValue;
 			}
 		},
-		
-		booleanoTrueFalse: function(sValue){
+
+		booleanoTrueFalse: function (sValue) {
 			switch (sValue) {
-				case "X": return true;
-				case "": return false;	
-				default: return sValue;
+			case "X":
+				return true;
+			case "":
+				return false;
+			default:
+				return sValue;
 			}
 		}
 	};
