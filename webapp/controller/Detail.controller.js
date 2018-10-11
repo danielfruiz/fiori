@@ -116,6 +116,11 @@ sap.ui.define([
 			}, [sPath], fnMyAfterDeleted);
 		},
 
+		onGetComprobante: function () {
+			var sIdnum = this.getView().byId("Idnum_id").getText();
+			sap.m.URLHelper.redirect("/sap/opu/odata/sap/ZHR_SOL_VAC_SRV/comprobanteSet('" + sIdnum + "')/$value", true);
+		},
+
 		/**
 		 * Event handler (attached declaratively) for the view edit button. Open a view to enable the user update the selected item. 
 		 * @function
@@ -167,7 +172,9 @@ sap.ui.define([
 
 			this.getView().bindElement({
 				path: sObjectPath,
-				parameters: {expand : 'toEmpleado'},
+				parameters: {
+					expand: 'toEmpleado'
+				},
 				events: {
 					change: this._onBindingChange.bind(this),
 					dataRequested: function () {

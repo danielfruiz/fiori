@@ -7,8 +7,8 @@
 			<!--EMPLEADO-->
 			<Panel expandable="{= ${device>/system/phone} ? true : false}" expanded="{= ${device>/system/phone} ? false : true}"
 				headerText="{i18n>empleadoTitulo}" width="auto" class="sapUiResponsiveMargin">
-				<f:SimpleForm id="sfEmpleado" editable="false" layout="ResponsiveGridLayout" maxContainerCols="2"
-					labelSpanL="6" labelSpanM="6" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+				<f:SimpleForm id="sfEmpleado" editable="false" layout="ResponsiveGridLayout" maxContainerCols="2" labelSpanL="6" labelSpanM="6"
+					emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
 					<f:content>
 						<core:Title text="Datos Personales"/>
 						<Label text="{i18n>empleadoNombre}"/>
@@ -30,12 +30,12 @@
 			<!--SOLICITUD-->
 			<Panel expandable="{= ${device>/system/phone} ? true : false}" expanded="true" headerText="{i18n>solicitudTitulo}" width="auto"
 				class="sapUiResponsiveMargin">
-				<f:SimpleForm id="sfSolicitud" editable="false" layout="ResponsiveGridLayout"  maxContainerCols="2"
-					labelSpanL="7" labelSpanM="7" emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
+				<f:SimpleForm id="sfSolicitud" editable="false" layout="ResponsiveGridLayout" maxContainerCols="2" labelSpanL="7" labelSpanM="7"
+					emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
 					<f:content>
 						<core:Title text="Datos Solicitud"/>
 						<Label text="{i18n>solicitudId}"/>
-						<Text text="{Idnum}"/>
+						<Text text="{Idnum}" id="Idnum_id"/>
 						<Label text="{i18n>Begda}"/>
 						<Text text="{parts: ['Begda'], formatter: '.formatter.fecha'}"/>
 						<Label text="{i18n>Endda}"/>
@@ -109,9 +109,10 @@
 		</semantic:content>
 		<!--<semantic:editAction>
 			<semantic:EditAction id="edit" press="onEdit"/>
-		</semantic:editAction>
+		</semantic:editAction> -->
 		<semantic:customFooterContent>
-			<Button enabled="true" id="deleteButton" press="onDelete" text="Delete"/>
-		</semantic:customFooterContent>-->
+			<!--<Button enabled="true" id="deleteButton" press="onDelete" text="Delete"/>-->
+			<Button enabled="true" id="comprobanteButton" press="onGetComprobante" text="Comprobante" icon="sap-icon://document-text"/>
+		</semantic:customFooterContent>
 	</semantic:DetailPage>
 </mvc:View>

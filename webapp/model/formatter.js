@@ -55,11 +55,8 @@ sap.ui.define([], function () {
 		},
 
 		booleanoSiNo: function (sValue) {
-			if (!sValue) {
-				return sValue;
-			}
-
-			var sFlag = sValue.toString().trim();
+			//var sFlag = sValue.toString().trim();
+			var sFlag = sValue;
 
 			if (sFlag === "X" || sValue === true) {
 				return "Si";
