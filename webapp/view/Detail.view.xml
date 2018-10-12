@@ -44,17 +44,31 @@
 						<Text text="{parts: ['Anticp'], formatter: '.formatter.booleanoSiNo'}"/>
 						<Label text="{i18n>Presta}"/>
 						<Text text="{parts: ['Presta'], formatter: '.formatter.booleanoSiNo'}"/>
-						<core:Title text="Dias Solicitdos"/>
+						<core:Title text="Dias Solicitados"/>
+						<!--legales-->
 						<Label text="{i18n>FleCo}"/>
 						<Text text="{FleCo}"/>
+						<!--sandwich-->
+						<Label text="{i18n>DiaSa}" visible="{= ${DiaSa} > 0 ? true : false }"/>
+						<Text text="{DiaSa}" visible="{= ${DiaSa} > 0 ? true : false }"/>
+						<!--progresivos-->
 						<Label text="{i18n>FprCo}"/>
 						<Text text="{FprCo}"/>
 						<Label text="{i18n>FprVe}"/>
 						<Text text="{FprVe}"/>
-						<Label text="{i18n>FadCo}"/>
-						<Text text="{FadCo}"/>
-						<Label text="{i18n>FadVe}"/>
-						<Text text="{FadVe}"/>
+						<!--esp ejecutivos-->
+						<Label text="{i18n>DeeCo}" visible="{activadores>/Dee}"/>
+						<Text text="{DeeCo}" visible="{activadores>/Dee}"/>
+						<!--adicionales-->
+						<Label text="{i18n>FadCo}" visible="{activadores>/Cvl}"/>
+						<Text text="{FadCo}" visible="{activadores>/Cvl}"/>
+						<Label text="{i18n>FadVe}" visible="{activadores>/Cvl}"/>
+						<Text text="{FadVe}" visible="{activadores>/Cvl}"/>
+						<!--estacionales-->
+						<Label text="{i18n>DesCo}" visible="{activadores>/Des}"/>
+						<Text text="{DesCo}" visible="{activadores>/Des}"/>
+						<Label text="{i18n>DesVe}" visible="{activadores>/Des}"/>
+						<Text text="{DesVe}" visible="{activadores>/Des}"/>
 						<!--<Label text="{i18n>Anticp}"/>-->
 						<!--<CheckBox editable="false" selected="{parts: ['Anticp'], formatter: '.formatter.booleanoSiNo'}" text="lol"/>-->
 						<!--<Label text="{i18n>Presta}"/>-->

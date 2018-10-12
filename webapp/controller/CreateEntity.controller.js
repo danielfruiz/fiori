@@ -124,6 +124,10 @@ sap.ui.define([
 			aItems = oTable.getItems();
 			for (i = 0; i < aItems.length; i++) {
 				oItem = aItems[i];
+				var oItemData = oItem.getBindingContext().getObject();
+				if (!oItemData.Fbono && !oItemData.Fpres) {
+					continue;
+				}
 				sBinding = oItem.getBindingContextPath();
 				for (sField in aFields) {
 					oValue = oModel.getProperty(sBinding + aFields[sField]);

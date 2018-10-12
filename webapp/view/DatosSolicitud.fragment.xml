@@ -22,9 +22,9 @@
 						<Label text="" required="false" visible="{activadores>/Pva}"/>
 						<CheckBox name="Presta" id="Presta_id" select="_validateSaveEnablement" enabled="true" text="{i18n>Presta}" selected="{ path: 'Presta' }"
 							visible="{activadores>/Pva}"/>
-						<Label text="{i18n>DesCo}" visible="{activadores>/Des}"/>
-						<Input name="DesCo" id="DesCo_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" enabled="true"
-							value="{ path: 'DesCo', type: 'sap.ui.model.odata.type.Byte'}" visible="{activadores>/Des}"/>
+						<Label text="{i18n>DeeCo}" required="false" visible="{activadores>/Dee}"/>
+						<Input name="DeeCo" id="DeeCo_id" type="Number" valueLiveUpdate="false" visible="{activadores>/Dee}" maxLength="2"
+							value="{ path: 'DeeCo', type: 'sap.ui.model.odata.type.Byte' }"/>
 					</f:content>
 				</f:SimpleForm>
 			</IconTabFilter>

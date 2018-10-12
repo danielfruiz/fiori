@@ -31,6 +31,20 @@ sap.ui.define([
 			this.getOwnerComponent().getModel().metadataLoaded().then(this._onMetadataLoaded.bind(this));
 			this._oODataModel = this.getOwnerComponent().getModel();
 			this._oResourceBundle = this.getResourceBundle();
+
+			var oEmpModel;
+			var _this = this;
+			this._oODataModel.read("/empleadoSet('0')/toActivadores", {
+				async: true,
+				success: function (oData, response) {
+					oEmpModel = new JSONModel(oData);
+					_this.setModel(oEmpModel, "activadores");
+				},
+				error: function () {
+					sap.m.MessageBox.alert("Error DataModel /empleadoSet('0')/toActivadores");
+				}
+
+			});
 		},
 
 		/* =========================================================== */

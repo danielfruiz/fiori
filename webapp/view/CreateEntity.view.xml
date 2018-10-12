@@ -30,6 +30,13 @@
 					<core:Fragment fragmentName="enap.f2.ZHR_SOL_VAC.view.DiasAdicionales" type="XML"/>
 				</content>
 			</Panel>
+			<!--DIAS ESTACIONALES-->
+			<Panel expandable="{= ${device>/system/phone} ? true : false}" expanded="{= ${device>/system/phone} ? false : true}"
+				headerText="{i18n>diasEstacionalTitulo}" width="auto" class="sapUiResponsiveMargin" visible="{activadores>/Des}">
+				<content>
+					<core:Fragment fragmentName="enap.f2.ZHR_SOL_VAC.view.DiasEstacionales" type="XML"/>
+				</content>
+			</Panel>
 			<!--SOLICITUD BGV-->
 			<Panel expandable="{= ${device>/system/phone} ? true : false}" expanded="{= ${device>/system/phone} ? false : true}"
 				headerText="{i18n>solBGVTitulo}" width="auto" class="sapUiResponsiveMargin" visible="{activadores>/Bgv}">
