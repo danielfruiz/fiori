@@ -1,7 +1,7 @@
-<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
-	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:t="sap.ui.table">
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns="sap.m" xmlns:t="sap.ui.table">
 	<Table id="diasAdicionalesList" inset="false" fixedLayout="false" items="{ path: '/diasVentaSet', sorter: { path: 'Begda' } }"
-		backgroundDesign="Transparent" noDataText="{i18n>detailLineItemTableNoDataText}" class="sapUiResponsiveMargin"
+		backgroundDesign="Transparent" noDataText="{i18n>sinAdicionales}" class="sapUiResponsiveMargin"
 		updateFinished="onListUpdateFinishedDiasAdicionales">
 		<headerToolbar>
 			<Toolbar id="tbDiasAdic">
@@ -56,15 +56,15 @@
 			</ColumnListItem>
 		</items>
 	</Table>
-	<f:SimpleForm class="editableForm" columnsL="1" columnsM="1" editable="true" emptySpanL="4" emptySpanM="4" id="frmDiasAdic"
-		labelSpanL="3" labelSpanM="3" layout="ResponsiveGridLayout" maxContainerCols="1" minWidth="1024">
+	<f:SimpleForm class="editableForm" columnsL="1" columnsM="1" editable="true" emptySpanL="4" emptySpanM="4" id="frmDiasAdic" labelSpanL="3"
+		labelSpanM="3" layout="ResponsiveGridLayout" maxContainerCols="1" minWidth="1024">
 		<f:content>
 			<Label text="{i18n>diasAdicionalesSolicitar}" required="false"/>
 			<Input name="FadCo" type="Number" id="FadCo_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" visible="true" maxLength="2"
-				value="{ path: 'FadCo', type: 'sap.ui.model.odata.type.Byte' }" enabled="{= ${diasAdicionales>/sumDispo} > 0  ? true : false }"/>
+				value="{ path: 'FadCo', type: 'sap.ui.model.odata.type.Byte' }" enabled="{= ${diasAdicionales>/sumDispo} > 0 ? true : false }"/>
 			<Label text="{i18n>diasAdicionalesVender}" required="false"/>
 			<Input name="FadVe" type="Number" id="FadVe_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" visible="true" maxLength="2"
-				value="{ path: 'FadVe', type: 'sap.ui.model.odata.type.Byte' }" enabled="{= ${diasAdicionales>/sumDispo} > 0  ? true : false }"/>
+				value="{ path: 'FadVe', type: 'sap.ui.model.odata.type.Byte' }" enabled="{= ${diasAdicionales>/sumDispo} > 0 ? true : false }"/>
 		</f:content>
 	</f:SimpleForm>
 </core:FragmentDefinition>

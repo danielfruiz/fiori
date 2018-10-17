@@ -84,7 +84,7 @@
 			<Panel expandable="{= ${device>/system/phone} ? true : false}" expanded="{= ${device>/system/phone} ? false : true}"
 				headerText="{i18n>bgvTitulo}" width="auto" class="sapUiResponsiveMargin">
 				<Table id="solBGVHistList" inset="false" fixedLayout="false" items="{ path: 'toMaestroBGV', sorter: { path: 'Begda' } }"
-					backgroundDesign="Solid" noDataText="{i18n>detailLineItemTableNoDataText}" class="sapUiResponsiveMargin" updateFinished="none">
+					backgroundDesign="Solid" noDataText="{i18n>sinSolBGV}" class="sapUiResponsiveMargin" updateFinished="none">
 					<headerToolbar>
 						<Toolbar id="lineItemsToolbar">
 							<Title id="tituloBGV" text="{i18n>bgvTitulo}"/>

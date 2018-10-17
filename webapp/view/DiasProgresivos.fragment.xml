@@ -1,7 +1,7 @@
-<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core"
-	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns="sap.m" xmlns:t="sap.ui.table">
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout"
+	xmlns="sap.m" xmlns:t="sap.ui.table">
 	<Table id="diasProgresivosList" inset="false" fixedLayout="false" items="{ path: '/diasProgresivosSet', sorter: { path: 'Begda' } }"
-		backgroundDesign="Transparent" noDataText="{i18n>detailLineItemTableNoDataText}" class="sapUiResponsiveMargin"
+		backgroundDesign="Transparent" noDataText="{i18n>sinProgresivos}" class="sapUiResponsiveMargin"
 		updateFinished="onListUpdateFinishedDiasProgresivos">
 		<headerToolbar>
 			<Toolbar id="tbDiasPro">
@@ -61,10 +61,10 @@
 		<f:content>
 			<Label text="{i18n>diasProgresivoSolicitar}" required="false"/>
 			<Input name="FprCo" type="Number" id="FprCo_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" visible="true" maxLength="2"
-				value="{ path: 'FprCo', type: 'sap.ui.model.odata.type.Byte' }" enabled="{= ${diasProgresivos>/sumDispo} > 0  ? true : false }"/>
+				value="{ path: 'FprCo', type: 'sap.ui.model.odata.type.Byte' }" enabled="{= ${diasProgresivos>/sumDispo} > 0 ? true : false }"/>
 			<Label text="{i18n>diasProgresivoVender}" required="false"/>
 			<Input name="FprVe" type="Number" id="FprVe_id" valueLiveUpdate="true" liveChange="_validateSaveEnablement" visible="true" maxLength="2"
-				value="{ path: 'FprVe', type: 'sap.ui.model.odata.type.Byte' }" enabled="{= ${diasProgresivos>/sumDispo} > 0  ? true : false }"/>
+				value="{ path: 'FprVe', type: 'sap.ui.model.odata.type.Byte' }" enabled="{= ${diasProgresivos>/sumDispo} > 0 ? true : false }"/>
 		</f:content>
 	</f:SimpleForm>
 </core:FragmentDefinition>

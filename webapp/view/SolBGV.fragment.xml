@@ -5,8 +5,7 @@
 			<!--SOLICITUD-->
 			<IconTabFilter text="Disponible Solicitar">
 				<Table id="solBGVList" inset="false" fixedLayout="false" items="{ path: '/solicitudBGVSet', sorter: { path: 'Begda' } }"
-					backgroundDesign="Transparent" noDataText="{i18n>detailLineItemTableNoDataText}" class="sapUiResponsiveMargin"
-					updateFinished="onListUpdateFinished">
+					backgroundDesign="Transparent" noDataText="{i18n>sinBGV}" class="sapUiResponsiveMargin" updateFinished="onListUpdateFinished">
 					<!--<headerToolbar>
 						<Toolbar id="lineItemsToolbar">
 							<Title id="tituloDiasLeg" text="{i18n>historicoBGVTabla}"/>

@@ -31,7 +31,7 @@
 			<!--DATOS EMPLEADO-->
 			<IconTabFilter text="{i18n>datosEmpleado}">
 				<f:SimpleForm id="sfEmpleado" editable="false" layout="ResponsiveGridLayout" maxContainerCols="2" labelSpanL="6" labelSpanM="6"
-					emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2" binding="/empleadoSet">
+					emptySpanL="0" emptySpanM="0" columnsL="2" columnsM="2">
 					<f:content>
 						<core:Title text="Datos Personales"/>
 						<Label text="{i18n>empleadoNombre}"/>
